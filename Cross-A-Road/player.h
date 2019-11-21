@@ -1,8 +1,10 @@
 #pragma once
 
-#include "game_object.h"
+#include "entity.h"
 
-class Player : public Game_object {
+class Player : public Entity {
+public:
 
+private:
 };
 

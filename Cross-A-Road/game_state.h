@@ -1,6 +1,7 @@
 #pragma once
 
 #include "game_level.h"
+#include <memory>
 
 class Game_state {
 public:

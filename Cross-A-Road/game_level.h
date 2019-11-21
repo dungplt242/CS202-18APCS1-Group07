@@ -2,6 +2,7 @@
 
 #include "game_map.h"
 #include "player.h"
+#include <memory>
 
 class Game_level {
 public:
