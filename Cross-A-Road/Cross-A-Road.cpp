@@ -9,7 +9,7 @@
 int main()
 {
 	auto game = std::make_unique<Game_module>();
-	game->start_game();
+	game->show_main();
 	return 0;
 }
 

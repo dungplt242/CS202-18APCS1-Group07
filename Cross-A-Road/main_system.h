@@ -5,7 +5,8 @@
 
 class Game_module {
 public:
-	void start_game(std::shared_ptr<Game_state> start_state = std::make_shared<Game_state>());
+	void show_main();
 private:
-	
+	void load_game(std::shared_ptr<Game_state> state);
+	void start_game(std::shared_ptr<Game_state> start_state = std::make_shared<Game_state>());
 };
