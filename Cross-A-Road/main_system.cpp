@@ -6,11 +6,6 @@ void Game_module::show_main()
 
 }
 
-void Game_module::load_game(std::shared_ptr<Game_state> load_state)
-{
-
-}
-
 void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 {
 	load_game(start_state);
@@ -25,4 +20,14 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 
 		break;
 	}
+}
+
+void Game_module::load_game(std::shared_ptr<Game_state> load_state)
+{
+
+}
+
+void Game_module::save_game()
+{
+
 }

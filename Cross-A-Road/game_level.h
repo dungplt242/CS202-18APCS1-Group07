@@ -9,7 +9,7 @@ public:
 
 private:
 	int level_id;
-	std::shared_ptr<Game_map> current_map;
+	Game_map current_map;
 	Player player;
 };
 
