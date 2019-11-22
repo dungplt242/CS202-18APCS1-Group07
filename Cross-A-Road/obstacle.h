@@ -6,6 +6,6 @@ public:
 private:
 	void do_tick();
 
-	int tick_passed;
+	int tick_passed = 0;
 };
 

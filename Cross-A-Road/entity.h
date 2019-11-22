@@ -9,8 +9,8 @@ public:
 	Entity();
 	virtual ~Entity();
 	void draw();
-private:
-	Point location;
+	bool collide(const Entity& other);
+protected:
+	Point location = { 0, 0 };
 	std::vector<Pixel> pixels;
 };
-

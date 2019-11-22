@@ -3,7 +3,6 @@
 
 #include <iostream>
 #include <memory>
-#include "Windows.h"
 #include "main_system.h"
 
 int main()
