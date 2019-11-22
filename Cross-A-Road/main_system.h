@@ -7,14 +7,13 @@
 
 class Game_module {
 public:
-<<<<<<< Updated upstream
-=======
 	void show_main();
-private:
-	Menu menu;
 	void load_game(std::shared_ptr<Game_state> state);
->>>>>>> Stashed changes
 	void start_game(std::shared_ptr<Game_state> start_state = std::make_shared<Game_state>());
 private:
-	
+	void start_game(std::shared_ptr<Game_state> start_state = std::make_shared<Game_state>());
+	void load_game(std::shared_ptr<Game_state> state);
+	void save_game();
+	Menu menu;
+	Game_state current_state;
 };

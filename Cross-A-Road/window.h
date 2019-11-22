@@ -1,7 +1,6 @@
-<<<<<<< Updated upstream
-=======
 #pragma once
 #include <iostream>
+#include "point.h"
 
 struct Point {
 	int x, y;
@@ -31,4 +30,3 @@ protected:
 	Point upper_left, lower_right;
 
 };
->>>>>>> Stashed changes
