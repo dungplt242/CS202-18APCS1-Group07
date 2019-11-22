@@ -1,6 +1,8 @@
 #include "entity.h"
+#include "console.h"
+#include <iostream>
 
-
+using Console::gotoXY;
 
 Entity::Entity()
 {
@@ -11,12 +13,6 @@ Entity::~Entity()
 {
 }
 
-void Entity::draw()
-{
-	for (auto pixel : pixels) {
-		//
-	}
-}
 
 bool Entity::collide(const Entity& other)
 {

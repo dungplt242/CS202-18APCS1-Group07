@@ -33,6 +33,13 @@ void Window::turn_off_reverse_color()
 	SetConsoleTextAttribute(HOUT, FOREGROUND_INTENSITY | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
 }
 
+bool Window::contain(Point p)
+{
+	return upper_left.x <= p.x && p.x <= lower_right.x && upper_left.y <= p.y && p.y <= lower_right.y;
+}
+
+
+
 void Window::clear_screen()
 {
 	system("cls");
@@ -59,6 +66,18 @@ void Window::draw_rect(char c)
 		std::cout << c;
 		gotoXY(lower_right.x, y);
 		std::cout << c;
+	}
+}
+
+void Window::draw_entity(std::shared_ptr<Entity> entity)
+{
+	for (auto pixel : entity ->pixels) {
+		pixel += entity -> location;
+		if (!contain(pixel)) continue;
+		std::cerr << "Hi\n";
+		gotoXY(pixel.x, pixel.y);
+		//SetTextColor(pixel.color);
+		putchar(pixel.c);
 	}
 }
 

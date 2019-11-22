@@ -10,7 +10,7 @@ void Game_module::show_main()
 {
 	while (true) {
 		menu.clear_screen();
-		menu.set_pos({ 1, 5 }, { 30, 100 });
+		menu.set_pos({ 1, 5 }, { 25, 70 });
 		menu.load_menu();
 		switch (menu.get_input()) {
 		case MENU_NAME::NEW_GAME:
@@ -35,7 +35,7 @@ void Game_module::show_main()
 void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 {
 	load_game(start_state);
-
+	start_state->render();
 	std::mutex mtx;
 	bool is_running = true;
 
