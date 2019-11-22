@@ -6,4 +6,12 @@ namespace Console {
 		COORD pos = { y, x };
 		SetConsoleCursorPosition(HOUT, pos);
 	}
+	void clear_screen()
+	{
+		system("cls");
+	}
+	void full_screen()
+	{
+		SetConsoleDisplayMode(HOUT, CONSOLE_FULLSCREEN_MODE, 0);
+	}
 }

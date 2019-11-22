@@ -6,4 +6,6 @@
 namespace Console
 {
 	void gotoXY(int x, int y);
+	void clear_screen();
+	void full_screen();
 }

@@ -10,7 +10,7 @@ public:
 	void render();
 private:
 	int level_id = 0;
-	Game_map current_map;
+	std::shared_ptr<Game_map> current_map;
 	std::shared_ptr<Player> player;
 };
 

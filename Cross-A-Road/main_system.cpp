@@ -5,11 +5,13 @@
 #include <memory>
 #include <thread>
 #include <mutex>
+#include "console.h"
 
 void Game_module::show_main()
 {
+	Console::full_screen();
 	while (true) {
-		menu.clear_screen();
+		Console::clear_screen();
 		menu.set_pos({ 1, 5 }, { 25, 70 });
 		menu.load_menu();
 		switch (menu.get_input()) {
@@ -49,7 +51,7 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 			mtx.unlock();
 			current_state.do_tick();
 			current_state.render();
-			std::cout << "Main game loop\n";
+			//std::cout << "Main game loop\n";
 			Sleep(1000);
 		}
 	};
@@ -60,7 +62,7 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 		// process input
 		char ch;
 		ch = _getch();
-		std::cout << "Input: " << ch << '\n';
+		//std::cout << "Input: " << ch << '\n';
 		if (ch == 'a') {
 			mtx.lock();
 			is_running = false;

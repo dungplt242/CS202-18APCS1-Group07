@@ -4,13 +4,17 @@
 
 Player::Player()
 {
-	pixels.push_back({ {0, 0}, 'p', 0 });
-	pixels.push_back({ {0, 1}, 'p', 0 });
-	location = { 2, 2 };
+	location = { 2, 3 };
+	load_icon();
 }
 
 Player::~Player()
 {
+}
+
+std::string Player::type_name()
+{
+	return "Player";
 }
 
 void Player::move(Point d)

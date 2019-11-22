@@ -7,6 +7,7 @@ class Player : public Entity {
 public:
 	Player();
 	~Player();
+	std::string type_name();
 	void move(Point d);
 
 private:
