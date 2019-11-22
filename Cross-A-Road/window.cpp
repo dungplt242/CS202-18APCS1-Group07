@@ -2,9 +2,7 @@
 #include <iostream>
 #include <Windows.h>
 
-
-#define HOUT GetStdHandle(STD_OUTPUT_HANDLE)
-#define HIN GetStdHandle(STD_INPUT_HANDLE)
+using Console::gotoXY;
 
 Window::Window()
 {
@@ -35,10 +33,9 @@ void Window::turn_off_reverse_color()
 	SetConsoleTextAttribute(HOUT, FOREGROUND_INTENSITY | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
 }
 
-void Window::gotoXY(int x, int y)
+void Window::clear_screen()
 {
-	COORD pos = { y, x };
-	SetConsoleCursorPosition(HOUT, pos);
+	system("cls");
 }
 
 void Window::draw_full_rect(char c)

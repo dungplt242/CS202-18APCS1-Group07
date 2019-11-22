@@ -8,9 +8,27 @@
 
 void Game_module::show_main()
 {
-	menu.set_pos({ 1, 5 }, { 25, 80 });
-	menu.load_menu();
-	menu.get_input();
+	while (true) {
+		menu.clear_screen();
+		menu.set_pos({ 1, 5 }, { 30, 100 });
+		menu.load_menu();
+		switch (menu.get_input()) {
+		case MENU_NAME::NEW_GAME:
+			start_game();
+			break;
+		case MENU_NAME::LOAD_GAME:
+			// Load game
+			break;
+		case MENU_NAME::SAVE_GAME:
+			// Save game
+			break;
+		case MENU_NAME::SETTINGS:
+			// Settings game
+			break;
+		case MENU_NAME::QUIT:
+			exit(0);
+		}
+	}
 	//start_game();
 }
 

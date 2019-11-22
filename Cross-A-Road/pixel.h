@@ -4,5 +4,8 @@
 
 struct Pixel : Point {
 	Pixel operator+(const Point& q);
+	int color;
 };
+
+
 

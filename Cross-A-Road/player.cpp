@@ -2,4 +2,5 @@
 
 void Player::move(Point d)
 {
+
 }

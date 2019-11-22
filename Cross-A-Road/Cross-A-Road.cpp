@@ -5,6 +5,7 @@
 #include <memory>
 #include "main_system.h"
 #include "window.h"
+#include <Windows.h>
 
 int main()
 {
