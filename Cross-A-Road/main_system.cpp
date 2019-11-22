@@ -15,9 +15,9 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 		// process input
 
 		// update
-
+		current_state.do_tick();
 		// render
-
+		current_state.render();
 		break;
 	}
 }

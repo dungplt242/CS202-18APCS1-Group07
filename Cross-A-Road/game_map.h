@@ -6,7 +6,8 @@
 
 class Game_map {
 public:
-
+	void do_tick();
+	void render();
 private:
 	std::vector<std::unique_ptr<Lane>> lanes;
 };

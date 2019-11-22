@@ -1,6 +1,6 @@
 #pragma once
 
-#include "window.h"
+#include "pixel.h"
 
 #include <vector>
 
@@ -8,7 +8,9 @@ class Entity {
 public:
 	Entity();
 	virtual ~Entity();
+	void draw();
 private:
-	std::vector<Point> points;
+	Point location;
+	std::vector<Pixel> pixels;
 };
 

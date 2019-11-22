@@ -6,7 +6,8 @@
 
 class Game_level {
 public:
-
+	void do_tick();
+	void render();
 private:
 	int level_id;
 	Game_map current_map;

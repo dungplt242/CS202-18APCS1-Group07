@@ -1,8 +1,6 @@
 #pragma once
 
-struct Point {
-	int x, y;
-};
+#include "point.h"
 
 class Window {
 public:
