@@ -2,14 +2,6 @@
 #include <iostream>
 #include "point.h"
 
-struct Point {
-	int x, y;
-	Point();
-	Point(int x, int y);
-
-	Point operator+(const Point&b);
-};
-
 class Window {
 public:
 	Window();

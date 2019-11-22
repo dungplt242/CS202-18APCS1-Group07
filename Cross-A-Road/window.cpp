@@ -72,18 +72,6 @@ void Window::print_center_align(std::string st, int line)
 	std::cout << st.c_str();
 }
 
-Point::Point()
-{
-}
-
-Point::Point(int x, int y):x(x), y(y)
-{
-}
-
-Point Point::operator+(const Point & b)
-{
-	return Point(x + b.x, y + b.y);
-}
 
 void Window::set_pos(Point upper, Point lower) {
 	upper_left = upper, lower_right = lower;
