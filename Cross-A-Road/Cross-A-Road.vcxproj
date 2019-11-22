@@ -158,6 +158,7 @@
     <ClCompile Include="game_state.cpp" />
     <ClCompile Include="lane.cpp" />
     <ClCompile Include="main_system.cpp" />
+    <ClCompile Include="menu.cpp" />
     <ClCompile Include="obstacle.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="point.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="game_state.h" />
     <ClInclude Include="lane.h" />
     <ClInclude Include="main_system.h" />
+    <ClInclude Include="menu.h" />
     <ClInclude Include="obstacle.h" />
     <ClInclude Include="pixel.h" />
     <ClInclude Include="player.h" />
