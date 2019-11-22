@@ -4,6 +4,7 @@
 #include <iostream>
 #include <memory>
 #include "main_system.h"
+#include "window.h"
 
 int main()
 {

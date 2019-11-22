@@ -8,7 +8,10 @@
 
 void Game_module::show_main()
 {
-	start_game();
+	menu.set_pos({ 1, 5 }, { 25, 80 });
+	menu.load_menu();
+	menu.get_input();
+	//start_game();
 }
 
 void Game_module::start_game(std::shared_ptr<Game_state> start_state)

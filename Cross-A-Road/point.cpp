@@ -14,3 +14,11 @@ Point Point::operator+(const Point& q)
 	p += q;
 	return p;
 }
+
+Point::Point()
+{
+}
+
+Point::Point(int x, int y) :x(x), y(y)
+{
+}
