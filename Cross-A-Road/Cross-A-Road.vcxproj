@@ -151,8 +151,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="bird.cpp" />
+    <ClCompile Include="bus.cpp" />
+    <ClCompile Include="car.cpp" />
     <ClCompile Include="console.cpp" />
     <ClCompile Include="Cross-A-Road.cpp" />
+    <ClCompile Include="dinosaur.cpp" />
     <ClCompile Include="entity.cpp" />
     <ClCompile Include="game_level.cpp" />
     <ClCompile Include="game_map.cpp" />
@@ -164,10 +168,15 @@
     <ClCompile Include="player.cpp" />
     <ClCompile Include="point.cpp" />
     <ClCompile Include="pixel.cpp" />
+    <ClCompile Include="truck.cpp" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bird.h" />
+    <ClInclude Include="bus.h" />
+    <ClInclude Include="car.h" />
     <ClInclude Include="console.h" />
+    <ClInclude Include="dinosaur.h" />
     <ClInclude Include="entity.h" />
     <ClInclude Include="game_level.h" />
     <ClInclude Include="game_map.h" />
@@ -179,6 +188,7 @@
     <ClInclude Include="pixel.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="point.h" />
+    <ClInclude Include="truck.h" />
     <ClInclude Include="window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
