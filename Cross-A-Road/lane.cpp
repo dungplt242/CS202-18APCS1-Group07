@@ -21,12 +21,15 @@ void Lane::render()
 
 void Lane::generate_obstacles()
 {
-	if (obstacles.size()) return;
+	//if (obstacles.size()) return; //1 obs only
+	int dis = 20; //depends on level
+	if (obstacles.size() && !obstacles[obstacles.size() - 1]->is_far_enough(upper_left.y + dis))
+		return;
 	int type = Random::Int(0, 4);
 	int dir_to_right = Random::Int(1, 1);
 	Point loca_obs, dir;
 	if (dir_to_right) {
-		loca_obs = upper_left + Point(1, Random::Int(-10, -4));
+		loca_obs = upper_left + Point(1, Random::Int(-20, -8));
 		dir = { 0, 1 };
 	} else{
 		loca_obs = Point(upper_left.x, lower_right.y) + Point(1, Random::Int(0, 1));
