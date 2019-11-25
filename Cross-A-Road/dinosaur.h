@@ -4,6 +4,7 @@
 class Dinosaur : public Obstacle {
 public:
 	Dinosaur();
+	Dinosaur(Point loca, Point dir);
 	~Dinosaur();
 	std::string type_name();
 private:

@@ -14,9 +14,10 @@ public:
 	void turn_off_reverse_color();
 
 	bool contain(Point x);
+	bool contain(std::shared_ptr<Entity> x);
 	void draw_full_rect(char c = '*');
 	void draw_rect(char c = '*');
-	void draw_entity(std::shared_ptr<Entity> entity);
+	void draw_entity(std::shared_ptr<Entity> entity, bool isErase = false);
 
 	void print_center_align(std::string st, int line);
 	

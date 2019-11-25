@@ -2,10 +2,12 @@
 
 void Game_state::render()
 {
-	Console::clear_screen();
-	set_pos({ 1, 1 }, {37, 100});
-	draw_rect('=');
-	current_level = std::make_shared<Game_level>();
+	if (current_level == nullptr) {
+		set_pos({ 1, 1 }, { 44, 150 });
+		Console::clear_screen();
+		draw_rect('=');
+		current_level = std::make_shared<Game_level>();
+	}
 	current_level ->render();
 
 }

@@ -9,7 +9,6 @@ public:
 	~Player();
 	std::string type_name();
 	void move(Point d);
-
 private:
 };
 

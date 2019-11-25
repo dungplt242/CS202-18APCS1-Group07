@@ -38,6 +38,16 @@ bool Window::contain(Point p)
 	return upper_left.x <= p.x && p.x <= lower_right.x && upper_left.y <= p.y && p.y <= lower_right.y;
 }
 
+bool Window::contain(std::shared_ptr<Entity> entity)
+{
+	for (auto pixel : entity->pixels) {
+		pixel += entity->location;
+		if (contain(pixel)) return true;
+	}
+	return false;
+}
+
+
 void Window::draw_full_rect(char c)
 {
 	for (int x = upper_left.x; x <= lower_right.x; ++x) {
@@ -62,16 +72,19 @@ void Window::draw_rect(char c)
 	}
 }
 
-void Window::draw_entity(std::shared_ptr<Entity> entity)
+void Window::draw_entity(std::shared_ptr<Entity> entity, bool isErase)
 {
 	for (auto pixel : entity ->pixels) {
 		pixel += entity -> location;
 		if (!contain(pixel)) continue;
 		gotoXY(pixel.x, pixel.y);
 		//SetTextColor(pixel.color);
-		putchar(pixel.c);
+		if (!isErase) putchar(pixel.c);
+		else putchar(' ');
 	}
 }
+
+
 
 
 

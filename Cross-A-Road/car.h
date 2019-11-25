@@ -4,6 +4,7 @@
 class Car : public Obstacle {
 public:
 	Car();
+	Car(Point loca, Point dir);
 	~Car();
 	std::string type_name();
 private:

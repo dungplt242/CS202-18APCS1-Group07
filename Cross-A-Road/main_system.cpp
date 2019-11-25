@@ -6,13 +6,15 @@
 #include <thread>
 #include <mutex>
 #include "console.h"
+#include "random.h"
 
 void Game_module::show_main()
 {
+	Random::Init();
 	Console::full_screen();
 	while (true) {
 		Console::clear_screen();
-		menu.set_pos({ 1, 5 }, { 25, 70 });
+		menu.set_pos({ 1, 10 }, { 40, 160 });
 		menu.load_menu();
 		switch (menu.get_input()) {
 		case MENU_NAME::NEW_GAME:
@@ -37,7 +39,9 @@ void Game_module::show_main()
 void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 {
 	load_game(start_state);
+	current_state = start_state;
 	start_state->render();
+
 	std::mutex mtx;
 	bool is_running = true;
 
@@ -49,10 +53,10 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 				return;
 			}
 			mtx.unlock();
-			current_state.do_tick();
-			current_state.render();
+			current_state->do_tick();
+			current_state->render();
 			//std::cout << "Main game loop\n";
-			Sleep(1000);
+			Sleep(30);
 		}
 	};
 

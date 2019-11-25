@@ -6,6 +6,11 @@ Car::Car()
 	load_icon();
 }
 
+Car::Car(Point loca, Point dir):Obstacle(loca, dir)
+{
+	load_icon(dir.y == -1);
+}
+
 Car::~Car()
 {
 }

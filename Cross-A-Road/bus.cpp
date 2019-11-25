@@ -6,6 +6,11 @@ Bus::Bus()
 	load_icon();
 }
 
+Bus::Bus(Point loca, Point dir):Obstacle(loca, dir)
+{
+	load_icon(dir.y == -1);
+}
+
 Bus::~Bus()
 {
 	//location = { };

@@ -6,6 +6,11 @@ Truck::Truck()
 	load_icon();
 }
 
+Truck::Truck(Point loca, Point dir):Obstacle(loca, dir)
+{
+	load_icon(dir.y == -1);
+}
+
 Truck::~Truck()
 {
 }

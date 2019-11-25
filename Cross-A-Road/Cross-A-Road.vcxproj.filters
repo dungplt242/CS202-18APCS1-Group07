@@ -72,6 +72,9 @@
     <ClCompile Include="bird.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="random.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game_state.h">
@@ -126,6 +129,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="bird.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="random.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -6,9 +6,10 @@
 class Entity {
 public:
 	Entity();
+	Entity(Point loca);
 	virtual ~Entity();
 	bool collide(const Entity& other);
-	virtual void load_icon();
+	virtual void load_icon(bool isFlipped = false);
 	virtual std::string type_name() = 0;
 	friend class Window;
 protected:

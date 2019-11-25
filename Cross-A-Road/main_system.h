@@ -13,5 +13,5 @@ private:
 	void load_game(std::shared_ptr<Game_state> state);
 	void save_game();
 	Menu menu;
-	Game_state current_state;
+	std::shared_ptr<Game_state> current_state;
 };
