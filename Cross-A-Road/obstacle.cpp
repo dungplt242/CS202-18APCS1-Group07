@@ -16,3 +16,9 @@ void Obstacle::move()
 {
 	location += direction;
 }
+
+bool Obstacle::is_far_enough(int distance)
+{
+	if (location.y >= distance) return true;
+	return false;
+}
