@@ -72,6 +72,33 @@ void Window::draw_rect(char c)
 	}
 }
 
+void Window::draw_road_marking(bool first, bool last)
+{
+	for (int y = upper_left.y + 1; y < lower_right.y; ++y) {
+		gotoXY(upper_left.x, y);
+		if (!first) {
+			if ((y - upper_left.y - 1) % 25 == 0 || (y - upper_left.y - 1 + 5) % 25 == 0)
+				std::cout << "|";
+			else if ((y - upper_left.y - 1 + 5) % 25 <= 5)
+				std::cout << " ";
+			else
+				std::cout << "_";
+		}
+		else
+			std::cout << "#";
+
+		gotoXY(lower_right.x, y);
+		if (!last) {
+			if ((y - upper_left.y - 1 + 5) % 25 <= 5)
+				std::cout << " ";
+			else
+				std::cout << "_";
+		}
+		else
+			std::cout << "#";
+	}
+}
+
 void Window::draw_entity(std::shared_ptr<Entity> entity, bool isErase)
 {
 	for (auto pixel : entity ->pixels) {

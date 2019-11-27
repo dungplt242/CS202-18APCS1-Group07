@@ -17,6 +17,7 @@ public:
 	bool contain(std::shared_ptr<Entity> x);
 	void draw_full_rect(char c = '*');
 	void draw_rect(char c = '*');
+	void draw_road_marking(bool first, bool last);
 	void draw_entity(std::shared_ptr<Entity> entity, bool isErase = false);
 
 	void print_center_align(std::string st, int line);
