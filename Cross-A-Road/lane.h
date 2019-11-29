@@ -4,11 +4,6 @@
 #include "obstacle.h"
 #include <vector>
 #include <memory>
-#include "car.h"
-#include "bus.h"
-#include "truck.h"
-#include "dinosaur.h"
-#include "bird.h"
 
 class Lane : public Window {
 public:

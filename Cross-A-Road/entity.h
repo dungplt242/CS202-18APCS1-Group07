@@ -2,6 +2,7 @@
 
 #include "pixel.h"
 #include <vector>
+#include <string>
 
 class Entity {
 public:

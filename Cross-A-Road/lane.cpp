@@ -1,5 +1,10 @@
 #include "lane.h"
 #include "random.h"
+#include "car.h"
+#include "bus.h"
+#include "truck.h"
+#include "dinosaur.h"
+#include "bird.h"
 
 Lane::Lane(Point upper, Point lower):Window(upper, lower)
 {
@@ -23,7 +28,7 @@ void Lane::generate_obstacles()
 {
 	//if (obstacles.size()) return; //1 obs only
 	int dis = 20; //depends on level
-	if (obstacles.size() && !obstacles[obstacles.size() - 1]->is_far_enough(upper_left.y + dis))
+	if (obstacles.size() && !obstacles.back()->is_far_enough(upper_left.y + dis))
 		return;
 	int type = Random::Int(0, 4);
 	int dir_to_right = Random::Int(1, 1);

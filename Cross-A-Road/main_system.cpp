@@ -39,8 +39,8 @@ void Game_module::show_main()
 void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 {
 	load_game(start_state);
-	current_state = start_state;
-	start_state->render();
+	
+	current_state->render();
 
 	std::mutex mtx;
 	bool is_running = true;
@@ -79,7 +79,7 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 
 void Game_module::load_game(std::shared_ptr<Game_state> load_state)
 {
-
+	current_state = load_state;
 }
 
 void Game_module::save_game()
