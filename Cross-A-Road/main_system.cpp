@@ -49,7 +49,8 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 	std::mutex mtx;
 	bool is_running = true, is_pause = false;
 
-	auto main_game_loop = [&]() {
+	auto main_game_loop = [&](char &ch) //char input 
+	{
 		while (true) {
 			mtx.lock();
 			if (!is_running) {
@@ -63,16 +64,19 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 			mtx.unlock();
 			current_state->do_tick();
 			current_state->render();
+			current_state->process_input(ch);
+			ch = '.';
 			//std::cout << "Main game loop\n";
 			//Sleep(30);
 		}
 	};
 
-	std::thread t1(main_game_loop);
+	char ch = '.';
+
+	std::thread t1(main_game_loop, std::ref(ch));
 	// input loop
 	while (true) {
 		// process input
-		char ch;
 		ch = _getch();
 		//std::cout << "Input: " << ch << '\n';
 		switch (ch) {

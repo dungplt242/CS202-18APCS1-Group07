@@ -35,11 +35,20 @@ void Window::turn_off_reverse_color()
 
 bool Window::contain(Point p)
 {
-	return upper_left.x <= p.x && p.x <= lower_right.x && upper_left.y <= p.y && p.y <= lower_right.y;
+	return upper_left.x < p.x && p.x < lower_right.x && upper_left.y < p.y && p.y < lower_right.y;
 }
 
 bool Window::contain(std::shared_ptr<Entity> entity)
 {
+	//for player
+	if (entity->type_name() == "Player") {
+		for (auto pixel : entity->pixels) {
+			pixel += entity->location;
+			if (!contain(pixel)) return false;
+		}
+		return true;
+	}
+
 	for (auto pixel : entity->pixels) {
 		pixel += entity->location;
 		if (contain(pixel)) return true;
@@ -69,6 +78,33 @@ void Window::draw_rect(char c)
 		std::cout << c;
 		gotoXY(lower_right.x, y);
 		std::cout << c;
+	}
+}
+
+void Window::draw_road_marking(bool first, bool last)
+{
+	for (int y = upper_left.y + 1; y < lower_right.y; ++y) {
+		gotoXY(upper_left.x, y);
+		if (!first) {
+			if ((y - upper_left.y - 1) % 25 == 0 || (y - upper_left.y - 1 + 5) % 25 == 0)
+				std::cout << "|";
+			else if ((y - upper_left.y - 1 + 5) % 25 <= 5)
+				std::cout << " ";
+			else
+				std::cout << "_";
+		}
+		else
+			std::cout << "#";
+
+		gotoXY(lower_right.x, y);
+		if (!last) {
+			if ((y - upper_left.y - 1 + 5) % 25 <= 5)
+				std::cout << " ";
+			else
+				std::cout << "_";
+		}
+		else
+			std::cout << "#";
 	}
 }
 
