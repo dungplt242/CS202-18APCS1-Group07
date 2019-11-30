@@ -27,13 +27,6 @@ void Menu::load_menu()
 	cursor = NEW_GAME;
 }
 
-#define KEY_UP 72
-#define KEY_DOWN 80
-#define KEY_LEFT 75
-#define KEY_RIGHT 77
-#define ENTER 13 
-#define ESC 27
-
 int Menu::get_input()
 {
 	while (true) {
@@ -47,7 +40,7 @@ int Menu::get_input()
 		Unchoose(cursor);
 		switch (c) {
 		case KEY_UP: {
-			cursor = (cursor - 1 + content.size()) % content.size();
+			cursor = (cursor - 1 + content.size()) % (int)content.size();
 			break;
 		}
 		case KEY_DOWN: {

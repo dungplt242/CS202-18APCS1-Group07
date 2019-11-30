@@ -36,6 +36,10 @@ void Game_module::show_main()
 	//start_game();
 }
 
+void Game_module::do_menu_choice()
+{
+}
+
 void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 {
 	load_game(start_state);
@@ -43,7 +47,7 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 	start_state->render();
 
 	std::mutex mtx;
-	bool is_running = true;
+	bool is_running = true, is_pause = false;
 
 	auto main_game_loop = [&]() {
 		while (true) {
@@ -52,11 +56,15 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 				mtx.unlock();
 				return;
 			}
+			if (is_pause) {
+				mtx.unlock();
+				continue;
+			}
 			mtx.unlock();
 			current_state->do_tick();
 			current_state->render();
 			//std::cout << "Main game loop\n";
-			Sleep(30);
+			//Sleep(30);
 		}
 	};
 
@@ -67,13 +75,20 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 		char ch;
 		ch = _getch();
 		//std::cout << "Input: " << ch << '\n';
-		if (ch == 'a') {
+		switch (ch) {
+		case 'a':
 			mtx.lock();
 			is_running = false;
 			mtx.unlock();
 			t1.join();
+			return;
+		case 'p': break;
+		case ESC: 
+			// Pause menu
+			is_pause ^= 1;
 			break;
 		}
+
 	}
 }
 

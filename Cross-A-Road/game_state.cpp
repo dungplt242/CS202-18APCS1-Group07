@@ -2,6 +2,9 @@
 
 void Game_state::render()
 {
+	if (current_level->isFinished()) {
+		
+	}
 	if (current_level == nullptr) {
 		set_pos({ 1, 1 }, { 44, 150 });
 		Console::clear_screen();
@@ -9,7 +12,6 @@ void Game_state::render()
 		current_level = std::make_shared<Game_level>();
 	}
 	current_level ->render();
-
 }
 
 void Game_state::do_tick()
