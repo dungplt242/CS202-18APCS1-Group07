@@ -2,9 +2,16 @@
 #include <vector>
 #include <iostream>
 
+#define KEY_UP 72
+#define KEY_DOWN 80
+#define KEY_LEFT 75
+#define KEY_RIGHT 77
+#define ENTER 13 
+#define ESC 27
+
 Player::Player()
 {
-	location = { 2, 3 };
+	location = { 3, 3 };
 	load_icon();
 }
 
@@ -17,7 +24,37 @@ std::string Player::type_name()
 	return "Player";
 }
 
+Point Player::get_loca()
+{
+	return location;
+}
+
 void Player::move(Point d)
 {
-
+	location = d;
 }
+
+void Player::process_input(const char & ch, int lane_width)
+{
+	switch (ch) {
+		case KEY_UP: {
+			move({ location.x - lane_width, location.y });
+			break;
+		}
+		case KEY_DOWN: {
+			move({ location.x + lane_width, location.y });
+			break;
+		}
+		case KEY_LEFT: {
+			move({ location.x, location.y - 3 });
+			break;
+		}
+		case KEY_RIGHT: {
+			move({ location.x, location.y + 3 });
+			break;
+		}
+		default:
+			break;
+	}
+}
+

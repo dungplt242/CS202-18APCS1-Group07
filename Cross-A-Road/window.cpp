@@ -35,11 +35,20 @@ void Window::turn_off_reverse_color()
 
 bool Window::contain(Point p)
 {
-	return upper_left.x <= p.x && p.x <= lower_right.x && upper_left.y <= p.y && p.y <= lower_right.y;
+	return upper_left.x < p.x && p.x < lower_right.x && upper_left.y < p.y && p.y < lower_right.y;
 }
 
 bool Window::contain(std::shared_ptr<Entity> entity)
 {
+	//for player
+	if (entity->type_name() == "Player") {
+		for (auto pixel : entity->pixels) {
+			pixel += entity->location;
+			if (!contain(pixel)) return false;
+		}
+		return true;
+	}
+
 	for (auto pixel : entity->pixels) {
 		pixel += entity->location;
 		if (contain(pixel)) return true;
