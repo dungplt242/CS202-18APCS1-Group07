@@ -2,9 +2,9 @@
 
 void Game_state::render()
 {
-	if (current_level->isFinished()) {
+	//if (current_level->isFinished()) {
 		
-	}
+	//}
 	if (current_level == nullptr) {
 		set_pos({ 1, 1 }, { 44, 150 });
 		Console::clear_screen();

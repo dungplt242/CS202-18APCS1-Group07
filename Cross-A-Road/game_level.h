@@ -10,7 +10,8 @@ public:
 	Game_level(int level_id);
 	void do_tick();
 	void render();
-	bool is_finished();
+	bool is_finished(); 
+	void process_input(const char &ch);
 private:
 	int level_id = 0;
 	bool finished = false;

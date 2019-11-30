@@ -32,3 +32,14 @@ bool Game_level::is_finished()
 {
 	return finished;
 }
+
+void Game_level::process_input(const char & ch)
+{
+	if (ch == KEY_DOWN || ch == KEY_UP || ch == KEY_LEFT || ch == KEY_RIGHT) {
+		draw_entity(player, true);
+		Point prev_loca = player->get_loca();
+		player->process_input(ch, 6); //6: lane_width
+		if (!contain(player))
+			player->move(prev_loca);
+	}
+}
