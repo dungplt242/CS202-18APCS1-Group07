@@ -86,7 +86,9 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 			mtx.unlock();
 			t1.join();
 			return;
-		case 'p': break;
+		case 'p':
+			// Pause menu
+			is_pause ^= 1;
 		case ESC: 
 			// Pause menu
 			is_pause ^= 1;

@@ -1,16 +1,15 @@
 #include "game_state.h"
 
+Game_state::Game_state()
+{
+	set_pos({ 1, 1 }, { 44, 150 });
+	Console::clear_screen();
+	draw_rect('=');
+	current_level = std::make_shared<Game_level>();
+}
+
 void Game_state::render()
 {
-	//if (current_level->isFinished()) {
-		
-	//}
-	if (current_level == nullptr) {
-		set_pos({ 1, 1 }, { 44, 150 });
-		Console::clear_screen();
-		draw_rect('=');
-		current_level = std::make_shared<Game_level>();
-	}
 	current_level ->render();
 }
 

@@ -6,6 +6,7 @@
 
 class Game_state : Window {
 public:
+	Game_state();
 	void render();
 	void do_tick();
 	void import_from_file(const std::string& file_path);
