@@ -13,6 +13,11 @@ Obstacle::Obstacle(Point loca, Point direction):Entity(loca), direction(directio
 {
 }
 
+Obstacle::~Obstacle()
+{
+
+}
+
 void Obstacle::do_tick()
 {
 }

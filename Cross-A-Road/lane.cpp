@@ -6,8 +6,16 @@ Lane::Lane(Point upper, Point lower):Window(upper, lower)
 {
 }
 
+Lane::~Lane()
+{
+	for (auto obs : obstacles) {
+		draw_entity(obs, true); // erase
+	}
+}
+
 void Lane::do_tick()
 {
+
 }
 
 void Lane::render()

@@ -2,8 +2,7 @@
 #include <iostream>
 #include <thread>
 
-
-Game_level::Game_level()
+Game_level::Game_level(int level_id):level_id(level_id)
 {
 	int n_lanes = 7, lane_width = 6; // for player loop
 	player = std::make_shared<Player>();
@@ -11,14 +10,9 @@ Game_level::Game_level()
 	current_map = std::make_shared<Game_map>(upper_left, lower_right, n_lanes, lane_width);
 }
 
-Game_level::Game_level(int level_id):level_id(level_id)
-{
-	Game_level();
-}
-
 void Game_level::do_tick()
 {
-
+	current_map->do_tick();
 }
 
 void Game_level::render()
@@ -29,7 +23,7 @@ void Game_level::render()
 
 bool Game_level::is_finished()
 {
-	return finished;
+	return current_map->is_finished(player);
 }
 
 void Game_level::process_input(const char & ch)
@@ -41,4 +35,9 @@ void Game_level::process_input(const char & ch)
 		if (!contain(player))
 			player->move(prev_loca);
 	}
+}
+
+int Game_level::get_level_id()
+{
+	return level_id;
 }

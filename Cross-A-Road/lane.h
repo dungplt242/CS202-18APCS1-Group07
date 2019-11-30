@@ -13,6 +13,7 @@
 class Lane : public Window {
 public:
 	Lane(Point upper, Point lower);
+	virtual ~Lane();
 	void do_tick();
 	void render();
 	void generate_obstacles();

@@ -21,6 +21,14 @@ Game_map::Game_map(Point upper_left, Point lower_right, int n_lanes, int lane_wi
 
 void Game_map::do_tick()
 {
+	for (int i = 0; i < (int)lanes.size(); ++i) {
+		lanes[i]->do_tick();
+	}
+}
+
+bool Game_map::is_finished(std::shared_ptr<Player> player)
+{
+	return lanes.back()->contain(player);
 }
 
 void Game_map::render()

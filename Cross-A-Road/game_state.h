@@ -12,6 +12,7 @@ public:
 	void import_from_file(const std::string& file_path);
 	void export_to_file(const std::string& file_path);
 	void process_input(const char &ch);
+	void level_up();
 private:
 	std::shared_ptr<Game_level> current_level = nullptr;
 };

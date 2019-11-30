@@ -9,6 +9,7 @@ class Obstacle : public Entity {
 public:
 	Obstacle();
 	Obstacle(Point loca, Point direction = {0, 1});
+	virtual ~Obstacle();
 	virtual std::string type_name() = 0;
 	static std::shared_ptr<Obstacle> Create(ObstacleType type, Point loca_obs, Point dir);
 	void move();

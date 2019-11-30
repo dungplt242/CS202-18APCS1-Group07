@@ -6,15 +6,14 @@
 
 class Game_level : public Window {
 public:
-	Game_level();
-	Game_level(int level_id);
+	Game_level(int level_id = 1);
 	void do_tick();
 	void render();
 	bool is_finished(); 
 	void process_input(const char &ch);
+	int get_level_id();
 private:
 	int level_id = 0;
-	bool finished = false;
 	std::shared_ptr<Game_map> current_map = nullptr;
 	std::shared_ptr<Player> player = nullptr;
 };
