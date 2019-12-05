@@ -55,3 +55,5 @@ void Entity::load_icon(bool isFlipped)
 		}
 	}
 }
+
+

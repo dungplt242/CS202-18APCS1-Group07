@@ -19,3 +19,8 @@ std::string Bird::type_name()
 {
 	return "Bird";
 }
+
+int Bird::obs_type()
+{
+	return 3;
+}

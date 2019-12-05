@@ -15,6 +15,16 @@ Point Point::operator+(const Point& q)
 	return p;
 }
 
+void Point::export_to_file(std::ofstream & fo)
+{
+	fo << x << " " << y << std::endl;
+}
+
+void Point::import_from_file(std::ifstream & fi)
+{
+	fi >> x >> y;
+}
+
 Point::Point()
 {
 }

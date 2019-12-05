@@ -7,5 +7,6 @@ public:
 	Car(Point loca, Point dir);
 	~Car();
 	std::string type_name();
+	int obs_type();
 private:
 };

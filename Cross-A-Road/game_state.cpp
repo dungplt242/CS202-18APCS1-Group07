@@ -27,11 +27,18 @@ void Game_state::do_tick()
 
 void Game_state::import_from_file(const std::string& file_path)
 {
-
+	std::ifstream fi;
+	fi.open(file_path); 
+	current_level->import_from_file(fi);
+	fi.close();
 }
 
 void Game_state::export_to_file(const std::string& file_path)
 {
+	std::ofstream fo;
+	fo.open(file_path); 
+	current_level->export_to_file(fo);
+	fo.close();
 }
 
 void Game_state::process_input(const char & ch)

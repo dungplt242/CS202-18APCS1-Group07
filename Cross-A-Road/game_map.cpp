@@ -40,3 +40,19 @@ void Game_map::render()
 		lanes[i]->render();
 	}
 }
+
+void Game_map::import_from_file(std::ifstream & fi)
+{
+	int lanes_size;
+	fi >> lanes_size;
+	lanes.reserve(lanes_size);
+	for (int i = 0; i < lanes_size; ++i)
+		lanes[i]->import_from_file(fi);
+}
+
+void Game_map::export_to_file(std::ofstream & fo)
+{
+	fo << lanes.size() << std::endl;
+	for (int i = 0; i < (int)lanes.size(); ++i)
+		lanes[i]->export_to_file(fo);
+}

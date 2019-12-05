@@ -1,5 +1,6 @@
 #include "lane.h"
 #include "random.h"
+#include<string>
 //#include "obstacle.h"
 
 Lane::Lane(Point upper, Point lower):Window(upper, lower)
@@ -57,5 +58,23 @@ void Lane::destroy_obstacles_outside()
 	}
 	for (auto obs : obstacles) {
 		
+	}
+}
+
+void Lane::export_to_file(std::ofstream & fo)
+{
+	fo << obstacles.size() << std::endl;
+	for (int i = 0; i < (int)obstacles.size(); ++i)
+		obstacles[i]->export_to_file(fo);
+}
+
+void Lane::import_from_file(std::ifstream & fi)
+{
+	int obstacles_size;
+	fi >> obstacles_size;
+	obstacles.reserve(obstacles_size);
+	for (int i = 0; i < obstacles_size; ++i) {
+		std::shared_ptr<Obstacle> obs = Obstacle::obs_import_from_file(fi);
+		obstacles.push_back(obs);
 	}
 }

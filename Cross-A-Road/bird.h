@@ -7,5 +7,7 @@ public:
 	Bird(Point loca, Point dir);
 	~Bird();
 	std::string type_name();
+	int obs_type();
+
 private:
 };
