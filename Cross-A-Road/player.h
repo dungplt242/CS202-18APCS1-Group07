@@ -18,6 +18,8 @@ public:
 	Point get_loca();
 	void move(Point d);
 	void process_input(const char &ch, int lanes_width);
+	void export_to_file(std::ofstream& fo);
+	void import_from_file(std::ifstream& fi);
 private:
 };
 

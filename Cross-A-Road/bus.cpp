@@ -21,3 +21,8 @@ std::string Bus::type_name()
 {
 	return "Bus";
 }
+
+int Bus::obs_type()
+{
+	return 1;
+}

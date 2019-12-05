@@ -12,6 +12,9 @@ public:
 	void do_tick();
 	bool is_finished(std::shared_ptr<Player> player);
 	void render();
+	void import_from_file(std::ifstream& fi);
+	void export_to_file(std::ofstream& fo);
+
 private:
 	std::vector<std::unique_ptr<Lane>> lanes;
 };

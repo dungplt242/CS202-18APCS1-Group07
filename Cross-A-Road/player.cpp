@@ -58,3 +58,13 @@ void Player::process_input(const char & ch, int lane_width)
 	}
 }
 
+void Player::export_to_file(std::ofstream & fo)
+{
+	location.export_to_file(fo);
+}
+
+void Player::import_from_file(std::ifstream & fi)
+{
+	location.import_from_file(fi);
+}
+
