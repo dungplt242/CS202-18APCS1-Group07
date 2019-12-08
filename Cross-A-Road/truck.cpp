@@ -19,3 +19,8 @@ std::string Truck::type_name()
 {
 	return "Truck";
 }
+
+int Truck::obs_type()
+{
+	return 2;
+}

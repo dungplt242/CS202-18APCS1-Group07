@@ -13,6 +13,7 @@ public:
 	virtual void load_icon(bool isFlipped = false);
 	virtual std::string type_name() = 0;
 	friend class Window;
+	virtual void export_to_file(std::ofstream& fo) = 0;
 protected:
 	Point location = { 0, 0 };
 	std::vector<Pixel> pixels;

@@ -7,5 +7,6 @@ public:
 	Bus(Point loca, Point dir);
 	~Bus();
 	std::string type_name();
+	int obs_type();
 private:
 };

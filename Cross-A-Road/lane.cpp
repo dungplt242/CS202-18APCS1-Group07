@@ -1,17 +1,22 @@
 #include "lane.h"
 #include "random.h"
-#include "car.h"
-#include "bus.h"
-#include "truck.h"
-#include "dinosaur.h"
-#include "bird.h"
+
+#include<string>
 
 Lane::Lane(Point upper, Point lower):Window(upper, lower)
 {
 }
 
+Lane::~Lane()
+{
+	for (auto obs : obstacles) {
+		draw_entity(obs, true); // erase
+	}
+}
+
 void Lane::do_tick()
 {
+
 }
 
 void Lane::render()
@@ -40,14 +45,7 @@ void Lane::generate_obstacles()
 		loca_obs = Point(upper_left.x, lower_right.y) + Point(1, Random::Int(0, 1));
 		dir = { 0, -1 };
 	}
-	std::shared_ptr<Obstacle> obs;
-	switch (type) {
-	case 0: obs = std::make_shared<Car>(loca_obs, dir); break;
-	case 1: obs = std::make_shared<Truck>(loca_obs, dir); break;
-	case 2: obs = std::make_shared<Bus>(loca_obs, dir); break;
-	case 3: obs = std::make_shared<Bird>(loca_obs, dir); break;
-	case 4: obs = std::make_shared<Dinosaur>(loca_obs, dir); break;
-	}
+	std::shared_ptr<Obstacle> obs = Obstacle::Create(static_cast<ObstacleType>(type), loca_obs, dir);
 	obstacles.push_back(obs);
 }
 
@@ -59,6 +57,24 @@ void Lane::destroy_obstacles_outside()
 		}
 	}
 	for (auto obs : obstacles) {
-		
+
+	}
+}
+
+void Lane::export_to_file(std::ofstream & fo)
+{
+	fo << obstacles.size() << std::endl;
+	for (int i = 0; i < (int)obstacles.size(); ++i)
+		obstacles[i]->export_to_file(fo);
+}
+
+void Lane::import_from_file(std::ifstream & fi)
+{
+	int obstacles_size;
+	fi >> obstacles_size;
+	obstacles.reserve(obstacles_size);
+	for (int i = 0; i < obstacles_size; ++i) {
+		std::shared_ptr<Obstacle> obs = Obstacle::obs_import_from_file(fi);
+		obstacles.push_back(obs);
 	}
 }

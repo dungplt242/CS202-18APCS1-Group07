@@ -1,5 +1,9 @@
 #include "game_map.h"
 
+Game_map::Game_map()
+{
+}
+
 Game_map::Game_map(Point upper_left, Point lower_right, int n_lanes, int lane_width):lanes(n_lanes), Window(upper_left, lower_right)
 {
 	for (int i = 0; i < n_lanes; ++i) {
@@ -17,6 +21,14 @@ Game_map::Game_map(Point upper_left, Point lower_right, int n_lanes, int lane_wi
 
 void Game_map::do_tick()
 {
+	for (int i = 0; i < (int)lanes.size(); ++i) {
+		lanes[i]->do_tick();
+	}
+}
+
+bool Game_map::is_finished(std::shared_ptr<Player> player)
+{
+	return lanes.back()->contain(player);
 }
 
 void Game_map::render()
@@ -27,4 +39,20 @@ void Game_map::render()
 	for (int i = 0; i < (int)lanes.size(); ++i) {
 		lanes[i]->render();
 	}
+}
+
+void Game_map::import_from_file(std::ifstream & fi)
+{
+	int lanes_size;
+	fi >> lanes_size;
+	lanes.reserve(lanes_size);
+	for (int i = 0; i < lanes_size; ++i)
+		lanes[i]->import_from_file(fi);
+}
+
+void Game_map::export_to_file(std::ofstream & fo)
+{
+	fo << lanes.size() << std::endl;
+	for (int i = 0; i < (int)lanes.size(); ++i)
+		lanes[i]->export_to_file(fo);
 }

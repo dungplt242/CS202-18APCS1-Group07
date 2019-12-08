@@ -21,3 +21,8 @@ std::string Dinosaur::type_name()
 {
 	return "Dinosaur";
 }
+
+int Dinosaur::obs_type()
+{
+	return 4;
+}

@@ -7,5 +7,7 @@ public:
 	Truck(Point loca, Point dir);
 	~Truck();
 	std::string type_name();
+	int obs_type();
+
 private:
 };

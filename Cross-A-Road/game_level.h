@@ -6,8 +6,15 @@
 
 class Game_level : public Window {
 public:
+	Game_level(int level_id = 1);
 	void do_tick();
 	void render();
+	bool is_finished(); 
+	void process_input(const char &ch);
+	int get_level_id();
+	void import_from_file(std::ifstream &fi);
+	void export_to_file(std::ofstream& fo);
+
 private:
 	int level_id = 0;
 	std::shared_ptr<Game_map> current_map = nullptr;

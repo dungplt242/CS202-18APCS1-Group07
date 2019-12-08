@@ -7,5 +7,7 @@ public:
 	Dinosaur(Point loca, Point dir);
 	~Dinosaur();
 	std::string type_name();
+	int obs_type();
+
 private:
 };
