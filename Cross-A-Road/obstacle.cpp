@@ -40,9 +40,9 @@ void Obstacle::move()
 	location += direction;
 }
 
-bool Obstacle::is_far_enough(int distance)
+bool Obstacle::is_far_enough(Point p, int distance)
 {
-	if (location.y >= distance) return true;
+	if (abs(location.y - p.y) >= distance) return true;
 	return false;
 }
 
@@ -69,5 +69,4 @@ std::shared_ptr<Obstacle> Obstacle::obs_import_from_file(std::ifstream & fi)
 	}
 	return std::shared_ptr<Obstacle>();
 }
-
 

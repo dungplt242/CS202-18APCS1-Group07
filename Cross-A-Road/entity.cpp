@@ -48,7 +48,7 @@ void Entity::load_icon(bool isFlipped)
 			int color;
 			fin >> color;
 			if (mp[i][j] != ' ') {
-				if (isFlipped)
+				if (isFlipped && 0)
 					pixels.push_back({ {i, mxlength - j - 1}, mp[i][j], color });
 				else pixels.push_back({ {i, j}, mp[i][j], color });
 			}
