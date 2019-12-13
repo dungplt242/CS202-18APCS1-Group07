@@ -43,8 +43,6 @@ void Game_module::do_menu_choice()
 void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 {
 	load_game(start_state);
-	
-	current_state->render();
 
 	std::mutex mtx;
 	bool is_running = true, is_pause = false;
@@ -62,8 +60,7 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 				continue;
 			}
 			mtx.unlock();
-			current_state->do_tick();
-			current_state->render();
+			current_state->update_and_render();
 			current_state->process_input(ch);
 			ch = '.';
 			//std::cout << "Main game loop\n";

@@ -14,14 +14,9 @@ void Game_state::level_up()
 	// Message 
 }
 
-void Game_state::render()
+void Game_state::update_and_render()
 {
-	current_level ->render();
-}
-
-void Game_state::do_tick()
-{
-	current_level->do_tick();
+	current_level->update_and_render();
 	if (current_level->is_finished()) level_up();
 }
 

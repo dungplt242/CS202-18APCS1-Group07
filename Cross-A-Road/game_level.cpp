@@ -10,15 +10,15 @@ Game_level::Game_level(int level_id):level_id(level_id)
 	current_map = std::make_shared<Game_map>(upper_left, lower_right, n_lanes, lane_width);
 }
 
-void Game_level::do_tick()
+Game_level::~Game_level()
 {
-	current_map->do_tick();
+	draw_entity(player, true);	// delete player when leveling up
 }
 
-void Game_level::render()
+void Game_level::update_and_render()
 {
 	draw_entity(player);
-	current_map->render();
+	current_map->update_and_render();
 }
 
 bool Game_level::is_finished()

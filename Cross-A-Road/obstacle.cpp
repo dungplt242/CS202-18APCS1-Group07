@@ -20,6 +20,7 @@ Obstacle::~Obstacle()
 
 void Obstacle::do_tick()
 {
+	move();
 }
 
 std::shared_ptr<Obstacle> Obstacle::Create(ObstacleType type, Point loca_obs, Point dir)
