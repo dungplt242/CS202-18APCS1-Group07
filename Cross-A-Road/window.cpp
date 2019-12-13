@@ -2,9 +2,7 @@
 #include <iostream>
 #include <Windows.h>
 
-
-#define HOUT GetStdHandle(STD_OUTPUT_HANDLE)
-#define HIN GetStdHandle(STD_INPUT_HANDLE)
+using Console::gotoXY;
 
 Window::Window()
 {
@@ -35,11 +33,29 @@ void Window::turn_off_reverse_color()
 	SetConsoleTextAttribute(HOUT, FOREGROUND_INTENSITY | FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
 }
 
-void Window::gotoXY(int x, int y)
+bool Window::contain(Point p)
 {
-	COORD pos = { y, x };
-	SetConsoleCursorPosition(HOUT, pos);
+	return upper_left.x < p.x && p.x < lower_right.x && upper_left.y < p.y && p.y < lower_right.y;
 }
+
+bool Window::contain(std::shared_ptr<Entity> entity)
+{
+	//for player
+	if (entity->type_name() == "Player") {
+		for (auto pixel : entity->pixels) {
+			pixel += entity->location;
+			if (!contain(pixel)) return false;
+		}
+		return true;
+	}
+
+	for (auto pixel : entity->pixels) {
+		pixel += entity->location;
+		if (contain(pixel)) return true;
+	}
+	return false;
+}
+
 
 void Window::draw_full_rect(char c)
 {
@@ -65,6 +81,49 @@ void Window::draw_rect(char c)
 	}
 }
 
+void Window::draw_road_marking(bool first, bool last)
+{
+	for (int y = upper_left.y + 1; y < lower_right.y; ++y) {
+		gotoXY(upper_left.x, y);
+		if (!first) {
+			if ((y - upper_left.y - 1) % 25 == 0 || (y - upper_left.y - 1 + 5) % 25 == 0)
+				std::cout << "|";
+			else if ((y - upper_left.y - 1 + 5) % 25 <= 5)
+				std::cout << " ";
+			else
+				std::cout << "_";
+		}
+		else
+			std::cout << "#";
+
+		gotoXY(lower_right.x, y);
+		if (!last) {
+			if ((y - upper_left.y - 1 + 5) % 25 <= 5)
+				std::cout << " ";
+			else
+				std::cout << "_";
+		}
+		else
+			std::cout << "#";
+	}
+}
+
+void Window::draw_entity(std::shared_ptr<Entity> entity, bool isErase)
+{
+	for (auto pixel : entity ->pixels) {
+		pixel += entity -> location;
+		if (!contain(pixel)) continue;
+		gotoXY(pixel.x, pixel.y);
+		//SetTextColor(pixel.color);
+		if (!isErase) putchar(pixel.c);
+		else putchar(' ');
+	}
+}
+
+
+
+
+
 void Window::print_center_align(std::string st, int line)
 {
 	int y = ((lower_right.y + upper_left.y) - st.size()) / 2;
@@ -72,18 +131,6 @@ void Window::print_center_align(std::string st, int line)
 	std::cout << st.c_str();
 }
 
-Point::Point()
-{
-}
-
-Point::Point(int x, int y):x(x), y(y)
-{
-}
-
-Point Point::operator+(const Point & b)
-{
-	return Point(x + b.x, y + b.y);
-}
 
 void Window::set_pos(Point upper, Point lower) {
 	upper_left = upper, lower_right = lower;

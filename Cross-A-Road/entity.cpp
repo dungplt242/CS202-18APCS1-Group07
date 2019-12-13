@@ -1,8 +1,17 @@
 #include "entity.h"
+#include "console.h"
+#include <iostream>
+#include <string>
+#include <fstream>
+#include <cmath>
 
-
+using Console::gotoXY;
 
 Entity::Entity()
+{
+}
+
+Entity::Entity(Point loca):location(loca)
 {
 }
 
@@ -11,10 +20,14 @@ Entity::~Entity()
 {
 }
 
-void Entity::draw()
+
+bool Entity::collide(const Entity& other)
 {
-<<<<<<< Updated upstream
-=======
+	return false;
+}
+
+void Entity::load_icon(bool isFlipped)
+{
 	std::string filepath = "Data/" + type_name() + ".txt";
 	int n;
 	std::ifstream fin(filepath);
@@ -41,5 +54,6 @@ void Entity::draw()
 			}
 		}
 	}
->>>>>>> Stashed changes
 }
+
+

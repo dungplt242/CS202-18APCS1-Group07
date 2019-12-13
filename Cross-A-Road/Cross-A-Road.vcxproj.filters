@@ -54,6 +54,27 @@
     <ClCompile Include="pixel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="console.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="truck.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="car.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dinosaur.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bird.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="random.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="game_state.h">
@@ -90,6 +111,27 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="pixel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="console.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="truck.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bus.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="car.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="dinosaur.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="bird.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="random.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

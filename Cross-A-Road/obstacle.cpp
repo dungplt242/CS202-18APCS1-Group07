@@ -1,10 +1,27 @@
 #include "obstacle.h"
+#include "car.h"
+#include "bird.h"
+#include "bus.h"
+#include "truck.h"
+#include "dinosaur.h"
+
+Obstacle::Obstacle()
+{
+}
+
+Obstacle::Obstacle(Point loca, Point direction):Entity(loca), direction(direction)
+{
+}
+
+Obstacle::~Obstacle()
+{
+
+}
 
 void Obstacle::do_tick()
 {
+	move();
 }
-<<<<<<< Updated upstream
-=======
 
 std::shared_ptr<Obstacle> Obstacle::Create(ObstacleType type, Point loca_obs, Point dir)
 {
@@ -53,5 +70,3 @@ std::shared_ptr<Obstacle> Obstacle::obs_import_from_file(std::ifstream & fi)
 	return std::shared_ptr<Obstacle>();
 }
 
-
->>>>>>> Stashed changes

@@ -6,10 +6,12 @@
 
 class Game_state : Window {
 public:
-	void render();
-	void do_tick();
+	Game_state();
+	void update_and_render();
 	void import_from_file(const std::string& file_path);
 	void export_to_file(const std::string& file_path);
+	void process_input(const char &ch);
+	void level_up();
 private:
-	Game_level current_level;
+	std::shared_ptr<Game_level> current_level = nullptr;
 };

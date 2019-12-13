@@ -1,6 +1,4 @@
 #include "lane.h"
-<<<<<<< Updated upstream
-=======
 #include "random.h"
 
 #include<string>
@@ -17,26 +15,22 @@ Lane::~Lane()
 	}
 }
 
-void Lane::do_tick()
+void Lane::update_and_render()
 {
-	update_time();
+  update_time();
 	if (is_stop) {
 		return;
 	}
-	// if non-stop
-	destroy_obstacles_outside();
+	std::vector<std::shared_ptr<Obstacle> > obs_new;
 	for (auto obs : obstacles) {
-		draw_entity(obs, true); // erase
-		obs->move();
+		draw_entity(obs, true);	// erase
+		obs->do_tick();
+		if (contain(obs)) {
+			obs_new.push_back(obs);
+			draw_entity(obs);
+		}
 	}
-	// 
-}
-
-void Lane::render()
-{
-	for (auto obs : obstacles) {
-		draw_entity(obs);
-	}
+	obstacles.swap(obs_new);
 }
 
 void Lane::generate_obstacles()
@@ -58,17 +52,6 @@ void Lane::generate_obstacles()
 	obstacles.push_back(obs);
 }
 
-void Lane::destroy_obstacles_outside()
-{
-	for (int i = (int)obstacles.size() - 1; i >= 0; --i) {
-		if (!contain(obstacles[i])) {
-			obstacles.erase(obstacles.begin() + i);
-		}
-	}
-	for (auto obs : obstacles) {
-
-	}
-}
 
 void Lane::export_to_file(std::ofstream & fo)
 {
@@ -87,7 +70,6 @@ void Lane::import_from_file(std::ifstream & fi)
 		obstacles.push_back(obs);
 	}
 }
-
 void Lane::update_time()
 {
 	--time;
@@ -113,4 +95,3 @@ void Lane::clear_flag()
 	Console::gotoXY(upper_left.x + 1, lower_right.y + 4);
 	for (int i = 0; i < 10; ++i) std::cout << ' ';
 }
->>>>>>> Stashed changes

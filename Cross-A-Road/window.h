@@ -1,14 +1,8 @@
 #pragma once
 #include <iostream>
 #include "point.h"
-
-struct Point {
-	int x, y;
-	Point();
-	Point(int x, int y);
-
-	Point operator+(const Point&b);
-};
+#include "console.h"
+#include "entity.h"
 
 class Window {
 public:
@@ -19,9 +13,13 @@ public:
 	void turn_on_reverse_color();
 	void turn_off_reverse_color();
 
-	void gotoXY(int x, int y);
+	bool contain(Point x);
+	bool contain(std::shared_ptr<Entity> x);
 	void draw_full_rect(char c = '*');
 	void draw_rect(char c = '*');
+	void draw_road_marking(bool first, bool last);
+	void draw_entity(std::shared_ptr<Entity> entity, bool isErase = false);
+
 	void print_center_align(std::string st, int line);
 	
 	void set_pos(Point upper, Point lower);
