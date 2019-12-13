@@ -19,25 +19,18 @@ Game_map::Game_map(Point upper_left, Point lower_right, int n_lanes, int lane_wi
 	}
 }
 
-void Game_map::do_tick()
-{
-	for (int i = 0; i < (int)lanes.size(); ++i) {
-		lanes[i]->do_tick();
-	}
-}
-
 bool Game_map::is_finished(std::shared_ptr<Player> player)
 {
 	return lanes.back()->contain(player);
 }
 
-void Game_map::render()
+void Game_map::update_and_render()
 {
 	for (int i = 1; i < (int)lanes.size() - 1; ++i) {
 		lanes[i]->generate_obstacles();
 	}
 	for (int i = 0; i < (int)lanes.size(); ++i) {
-		lanes[i]->render();
+		lanes[i]->update_and_render();
 	}
 }
 

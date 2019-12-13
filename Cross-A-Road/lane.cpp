@@ -14,19 +14,18 @@ Lane::~Lane()
 	}
 }
 
-void Lane::do_tick()
+void Lane::update_and_render()
 {
-
-}
-
-void Lane::render()
-{
-	destroy_obstacles_outside();
+	std::vector<std::shared_ptr<Obstacle> > obs_new;
 	for (auto obs : obstacles) {
-		draw_entity(obs, true); // erase
-		obs->move();
-		draw_entity(obs);
+		draw_entity(obs, true);	// erase
+		obs->do_tick();
+		if (contain(obs)) {
+			obs_new.push_back(obs);
+			draw_entity(obs);
+		}
 	}
+	obstacles.swap(obs_new);
 }
 
 void Lane::generate_obstacles()
@@ -47,18 +46,6 @@ void Lane::generate_obstacles()
 	}
 	std::shared_ptr<Obstacle> obs = Obstacle::Create(static_cast<ObstacleType>(type), loca_obs, dir);
 	obstacles.push_back(obs);
-}
-
-void Lane::destroy_obstacles_outside()
-{
-	for (int i = (int)obstacles.size() - 1; i >= 0; --i) {
-		if (!contain(obstacles[i])) {
-			obstacles.erase(obstacles.begin() + i);
-		}
-	}
-	for (auto obs : obstacles) {
-
-	}
 }
 
 void Lane::export_to_file(std::ofstream & fo)
