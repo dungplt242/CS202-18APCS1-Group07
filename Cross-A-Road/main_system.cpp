@@ -18,7 +18,7 @@ void Game_module::show_main()
 		menu.load_menu();
 		switch (menu.get_input()) {
 		case MENU_NAME::NEW_GAME:
-			start_game();
+			start_new_game();
 			break;
 		case MENU_NAME::LOAD_GAME:
 			// Load game
@@ -40,9 +40,16 @@ void Game_module::do_menu_choice()
 {
 }
 
+void Game_module::start_new_game()
+{
+	auto new_state = std::make_shared<Game_state>();
+	new_state->init();
+	start_game(new_state);
+}
+
 void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 {
-	load_game(start_state);
+	current_state = start_state;
 
 	std::mutex mtx;
 	bool is_running = true, is_pause = false;
@@ -59,7 +66,7 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 			current_state->process_input(ch);
 			ch = '.';
 			//std::cout << "Main game loop\n";
-			// Sleep(10);
+			Sleep(5);
 		}
 	};
 

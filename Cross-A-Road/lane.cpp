@@ -15,6 +15,12 @@ Lane::~Lane()
 	}
 }
 
+void Lane::init()
+{
+	for (int i = 0; i < 300; ++i)
+		update_and_render();
+}
+
 void Lane::update_and_render()
 {
 	if (is_special) return;
@@ -23,6 +29,11 @@ void Lane::update_and_render()
 	if (is_stop) {
 		return;
 	}
+
+	// note that time when the lights are red is not counted towards
+	// obstacle generation
+
+	++tick_passed;
 
 	if (cooldown && tick_passed % cooldown == 0) {
 		generate_obstacles();
@@ -43,19 +54,15 @@ void Lane::update_and_render()
 
 void Lane::generate_obstacles()
 {
-	//if (obstacles.size()) return; //1 obs only
 	int type = Random::Int(0, 4);
 	Point loca_obs, dir;
 	if (dir_to_right) {
-		loca_obs = upper_left + Point(1, Random::Int(-20, -8));
+		loca_obs = upper_left + Point(1, Random::Int(-0, -0));
 		dir = { 0, 1 };
 	} else{
 		loca_obs = Point(upper_left.x, lower_right.y) + Point(1, Random::Int(-2, 0));
 		dir = { 0, -1 };
 	}
-	int dis = 50; //depends on level
-	if (obstacles.size() && !obstacles.back()->is_far_enough(loca_obs, dis))
-		return;
 	std::shared_ptr<Obstacle> obs = Obstacle::Create(static_cast<ObstacleType>(type), loca_obs, dir);
 	obstacles.push_back(obs);
 }

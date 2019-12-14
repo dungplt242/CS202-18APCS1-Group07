@@ -22,6 +22,11 @@ Game_level::~Game_level()
 	draw_entity(player, true);	// delete player when leveling up
 }
 
+void Game_level::init()
+{
+	current_map->init();
+}
+
 void Game_level::update_and_render()
 {
 	draw_entity(player);

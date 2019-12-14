@@ -10,6 +10,7 @@ class Lane : public Window {
 public:
 	Lane(Point upper, Point lower, bool is_special = false);
 	virtual ~Lane();
+	void init();
 	void update_and_render();
 	void generate_obstacles();
 	void export_to_file(std::ofstream& fo);

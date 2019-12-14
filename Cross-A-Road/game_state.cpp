@@ -8,15 +8,22 @@ Game_state::Game_state()
 	current_level = std::make_shared<Game_level>();
 }
 
+void Game_state::init()
+{
+	current_level->init();
+}
+
 void Game_state::level_up()
 {
 	current_level = std::make_shared<Game_level>(current_level->get_level_id() + 1);
+	current_level->init();
 	// Message 
 }
 
 void Game_state::play_again()
 {
 	current_level = std::make_shared<Game_level>(current_level->get_level_id());
+	current_level->init();
 	// Message 
 }
 

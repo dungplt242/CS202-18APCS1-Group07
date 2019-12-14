@@ -8,6 +8,7 @@ class Game_level : public Window {
 public:
 	Game_level(int level_id = 1);
 	~Game_level();
+	void init();
 	void update_and_render();
 	bool is_finished(); 
 	void process_input(const char &ch);
