@@ -4,6 +4,7 @@
 #include <string>
 #include <fstream>
 #include <cmath>
+#include <vector>
 
 using Console::gotoXY;
 
@@ -21,8 +22,14 @@ Entity::~Entity()
 }
 
 
-bool Entity::collide(const Entity& other)
+bool Entity::collide(std::shared_ptr<Entity> other)
 {
+	for (int i = 0; i < other->pixels.size(); i++)
+		for (int j = 0; j < pixels.size(); j++) {
+			if (other->pixels[i].x + other->location.x == pixels[j].x + location.x
+				&& other->pixels[i].y + other->location.y == pixels[j].y + location.y)
+				return true;
+		}
 	return false;
 }
 

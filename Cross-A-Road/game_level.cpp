@@ -19,6 +19,7 @@ void Game_level::update_and_render()
 {
 	draw_entity(player);
 	current_map->update_and_render();
+	check_collide();
 }
 
 bool Game_level::is_finished()
@@ -54,4 +55,11 @@ void Game_level::export_to_file(std::ofstream& fo)
 	fo << level_id << std::endl;
 	player->export_to_file(fo);
 	current_map->export_to_file(fo);
+}
+
+bool Game_level::check_collide()
+{
+	if (current_map->check_collide(player))
+		return true;
+	return false;
 }

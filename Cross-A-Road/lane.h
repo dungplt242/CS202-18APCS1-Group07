@@ -2,6 +2,7 @@
 
 #include "window.h"
 #include "obstacle.h"
+#include "player.h"
 #include <vector>
 #include <memory>
 
@@ -13,6 +14,7 @@ public:
 	void generate_obstacles();
 	void export_to_file(std::ofstream& fo);
 	void import_from_file(std::ifstream& fi);
+	bool check_collide(std::shared_ptr<Player> player);
 protected:
 	std::vector<std::shared_ptr<Obstacle>> obstacles;
 	bool is_stop = false;

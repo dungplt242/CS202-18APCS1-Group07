@@ -14,10 +14,17 @@ void Game_state::level_up()
 	// Message 
 }
 
+void Game_state::play_again()
+{
+	current_level = std::make_shared<Game_level>(current_level->get_level_id());
+	// Message 
+}
+
 void Game_state::update_and_render()
 {
 	current_level->update_and_render();
-	if (current_level->is_finished()) level_up();
+	if (current_level->is_finished()) level_up(); //win
+	if (current_level->check_collide()) play_again(); //lose
 }
 
 void Game_state::import_from_file(const std::string& file_path)

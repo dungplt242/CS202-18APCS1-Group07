@@ -49,3 +49,13 @@ void Game_map::export_to_file(std::ofstream & fo)
 	for (int i = 0; i < (int)lanes.size(); ++i)
 		lanes[i]->export_to_file(fo);
 }
+
+bool Game_map::check_collide(std::shared_ptr<Player> player)
+{
+	for (int i = 0; i < lanes.size(); i++)
+		if (lanes[i]->contain(player)) {
+			if (lanes[i]->check_collide(player))
+				return true;
+			return false;
+		}
+}

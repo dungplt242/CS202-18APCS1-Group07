@@ -9,7 +9,7 @@ public:
 	Entity();
 	Entity(Point loca);
 	virtual ~Entity();
-	bool collide(const Entity& other);
+	bool collide(std::shared_ptr<Entity> other);
 	virtual void load_icon(bool isFlipped = false);
 	virtual std::string type_name() = 0;
 	friend class Window;

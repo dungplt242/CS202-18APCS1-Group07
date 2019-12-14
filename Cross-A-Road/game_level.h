@@ -14,7 +14,7 @@ public:
 	int get_level_id();
 	void import_from_file(std::ifstream &fi);
 	void export_to_file(std::ofstream& fo);
-
+	bool check_collide();
 private:
 	int level_id = 0;
 	std::shared_ptr<Game_map> current_map = nullptr;

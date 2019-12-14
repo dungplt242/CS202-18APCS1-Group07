@@ -70,6 +70,14 @@ void Lane::import_from_file(std::ifstream & fi)
 		obstacles.push_back(obs);
 	}
 }
+bool Lane::check_collide(std::shared_ptr<Player> player)
+{
+	for (int i = 0; i < obstacles.size(); i++)
+		if (obstacles[i]->collide(player))
+			return true;
+	return false;
+}
+
 void Lane::update_time()
 {
 	--time;
