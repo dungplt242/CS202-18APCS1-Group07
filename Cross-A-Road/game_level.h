@@ -17,6 +17,7 @@ public:
 	bool check_collide();
 private:
 	int level_id = 0;
+	std::shared_ptr<Window> level_display = nullptr;
 	std::shared_ptr<Game_map> current_map = nullptr;
 	std::shared_ptr<Player> player = nullptr;
 };

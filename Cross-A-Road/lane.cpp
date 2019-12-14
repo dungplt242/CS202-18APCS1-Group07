@@ -3,7 +3,7 @@
 
 #include<string>
 
-Lane::Lane(Point upper, Point lower) : Window(upper, lower)
+Lane::Lane(Point upper, Point lower, bool is_special) : Window(upper, lower), is_special(is_special)
 {
 	dir_to_right = Random::Int(0, 1);
 }
@@ -17,6 +17,7 @@ Lane::~Lane()
 
 void Lane::update_and_render()
 {
+	if (is_special) return;
 	++tick_passed;
     update_traffic_lights();
 	if (is_stop) {
@@ -52,7 +53,7 @@ void Lane::generate_obstacles()
 		loca_obs = Point(upper_left.x, lower_right.y) + Point(1, Random::Int(-2, 0));
 		dir = { 0, -1 };
 	}
-	int dis = 30; //depends on level
+	int dis = 50; //depends on level
 	if (obstacles.size() && !obstacles.back()->is_far_enough(loca_obs, dis))
 		return;
 	std::shared_ptr<Obstacle> obs = Obstacle::Create(static_cast<ObstacleType>(type), loca_obs, dir);
@@ -105,9 +106,11 @@ void Lane::show_time_and_flag()
 {
 	Console::gotoXY(upper_left.x + 1, lower_right.y + 4);
 	if (is_stop) {
-		std::cout << "Red: " << traffic_time;
+		Console::SetColor(COLOR::RED);
 	}
-	else std::cout << "Green: " << traffic_time;
+	else Console::SetColor(COLOR::GREEN);
+	std::cout << char(219) << ' ' << traffic_time / 10;
+	Console::SetColor(COLOR::WHITE);
 }
 
 void Lane::clear_flag()

@@ -8,7 +8,7 @@
 
 class Lane : public Window {
 public:
-	Lane(Point upper, Point lower);
+	Lane(Point upper, Point lower, bool is_special = false);
 	virtual ~Lane();
 	void update_and_render();
 	void generate_obstacles();
@@ -23,6 +23,7 @@ protected:
 	bool is_stop = false;
 	int traffic_time = 0; // change between stop and non-stop
 	bool dir_to_right;
+	bool is_special; // true when is first and last lane
 private:
 	void update_traffic_lights();
 	void show_time_and_flag();

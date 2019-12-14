@@ -9,9 +9,29 @@
 #define ENTER 13 
 #define ESC 27
 
+enum COLOR {
+	WHITE,
+	YELLOW,
+	LIGHT_MAGENTA,
+	LIGHT_RED,
+	LIGHT_CYAN,
+	LIGHT_GREEN,
+	LIGHT_BLUE,
+	DARK_GRAY,
+	LIGHT_GRAY,
+	BROWN,
+	MAGENTA,
+	RED,
+	CYAN,
+	GREEN,
+	BLUE,
+	BLACK
+};
+
 namespace Console
 {
 	void gotoXY(int x, int y);
 	void clear_screen();
 	void full_screen();
+	void SetColor(int ForgC);
 }

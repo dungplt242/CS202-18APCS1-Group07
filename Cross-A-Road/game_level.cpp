@@ -1,6 +1,7 @@
 #include "game_level.h"
 #include <iostream>
 #include <thread>
+#include <string>
 
 Game_level::Game_level(int level_id) : level_id(level_id)
 {
@@ -8,6 +9,12 @@ Game_level::Game_level(int level_id) : level_id(level_id)
 	player = std::make_shared<Player>();
 	set_pos({ 1, 1 }, { 44, 150 });
 	current_map = std::make_shared<Game_map>(upper_left, lower_right, n_lanes, lane_width);
+	level_display = std::make_shared<Window>(
+		Point(upper_left.x, lower_right.y + 4),
+		Point(upper_left.x + 7, lower_right.y + 20)
+	);
+	level_display->draw_rect('+');
+	level_display->print_center_align("Level " + std::to_string(level_id), upper_left.x + 2);
 }
 
 Game_level::~Game_level()

@@ -5,7 +5,9 @@ Game_map::Game_map(Point upper_left, Point lower_right, int n_lanes, int lane_wi
 	for (int i = 0; i < n_lanes; ++i) {
 		lanes[i] = std::make_unique<Lane>(
 			Point{ upper_left.x + i * lane_width + 1, upper_left.y + 1}, 
-			Point{ upper_left.x + (i + 1) * lane_width, lower_right.y - 1});
+			Point{ upper_left.x + (i + 1) * lane_width, lower_right.y - 1},
+			i == 0 || i + 1 == n_lanes
+		);
 
 		if (i != 0 && i + 1 != n_lanes)		// set lane to generate obstacles if not first or last lane
 			lanes[i]->set_cooldown(7);
