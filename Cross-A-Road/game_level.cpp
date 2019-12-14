@@ -8,7 +8,7 @@ Game_level::Game_level(int level_id) : level_id(level_id)
 	int n_lanes = 7, lane_width = 6; // do we need to change each level?
 	player = std::make_shared<Player>();
 	set_pos({ 1, 1 }, { 44, 150 });
-	current_map = std::make_shared<Game_map>(upper_left, lower_right, n_lanes, lane_width);
+	current_map = std::make_shared<Game_map>(upper_left, lower_right, n_lanes, lane_width, level_id); 
 	level_display = std::make_shared<Window>(
 		Point(upper_left.x, lower_right.y + 4),
 		Point(upper_left.x + 7, lower_right.y + 20)
