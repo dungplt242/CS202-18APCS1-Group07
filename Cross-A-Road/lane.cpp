@@ -13,6 +13,7 @@ Lane::~Lane()
 	for (auto obs : obstacles) {
 		draw_entity(obs, true); // erase
 	}
+	if (!is_special) clear_flag();
 }
 
 void Lane::init()
@@ -24,8 +25,7 @@ void Lane::init()
 void Lane::update_and_render()
 {
 	if (is_special) return;
-	++tick_passed;
-    update_traffic_lights();
+	update_traffic_lights();
 	if (is_stop) {
 		return;
 	}
@@ -101,9 +101,9 @@ void Lane::set_cooldown(int x)
 void Lane::update_traffic_lights()
 {
 	--traffic_time;
+	clear_flag();
 	if (traffic_time <= 0) {
 		is_stop ^= 1;
-		clear_flag();
 		traffic_time = Random::Int(40, 100);
 	}
 	show_time_and_flag();
