@@ -7,12 +7,17 @@ Game_level::Game_level(int level_id) : level_id(level_id)
 	int n_lanes = 7, lane_width = 6; // do we need to change each level?
 	player = std::make_shared<Player>();
 	set_pos({ 1, 1 }, { 44, 150 });
-	current_map = std::make_shared<Game_map>(upper_left, lower_right, n_lanes, lane_width);
+	current_map = std::make_shared<Game_map>(upper_left, lower_right, n_lanes, lane_width, level_id);
 }
 
 Game_level::~Game_level()
 {
 	draw_entity(player, true);	// delete player when leveling up
+}
+
+void Game_level::init()
+{
+	current_map->init();
 }
 
 void Game_level::update_and_render()
