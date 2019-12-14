@@ -17,7 +17,7 @@ Lane::~Lane()
 
 void Lane::update_and_render()
 {
-  update_time();
+	update_time();
 	if (is_stop) {
 		return;
 	}
