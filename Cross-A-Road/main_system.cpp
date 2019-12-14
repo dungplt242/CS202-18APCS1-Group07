@@ -50,21 +50,16 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 	auto main_game_loop = [&](char &ch) //char input 
 	{
 		while (true) {
-			mtx.lock();
-			if (!is_running) {
-				mtx.unlock();
-				return;
+			{
+				std::lock_guard<std::mutex> locker(mtx);
+				if (!is_running) return;
+				if (is_pause) continue;
 			}
-			if (is_pause) {
-				mtx.unlock();
-				continue;
-			}
-			mtx.unlock();
 			current_state->update_and_render();
 			current_state->process_input(ch);
 			ch = '.';
 			//std::cout << "Main game loop\n";
-			//Sleep(30);
+			// Sleep(10);
 		}
 	};
 

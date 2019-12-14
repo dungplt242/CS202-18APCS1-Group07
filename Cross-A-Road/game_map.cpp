@@ -1,15 +1,14 @@
 #include "game_map.h"
 
-Game_map::Game_map()
-{
-}
-
-Game_map::Game_map(Point upper_left, Point lower_right, int n_lanes, int lane_width):lanes(n_lanes), Window(upper_left, lower_right)
+Game_map::Game_map(Point upper_left, Point lower_right, int n_lanes, int lane_width) : lanes(n_lanes), Window(upper_left, lower_right)
 {
 	for (int i = 0; i < n_lanes; ++i) {
 		lanes[i] = std::make_unique<Lane>(
 			Point{ upper_left.x + i * lane_width + 1, upper_left.y + 1}, 
 			Point{ upper_left.x + (i + 1) * lane_width, lower_right.y - 1});
+
+		if (i != 0 && i + 1 != n_lanes)		// set lane to generate obstacles if not first or last lane
+			lanes[i]->set_cooldown(7);
 		//lanes[i]->draw_rect('#'); 
 
 		//draw pavement & road marking
@@ -26,12 +25,8 @@ bool Game_map::is_finished(std::shared_ptr<Player> player)
 
 void Game_map::update_and_render()
 {
-	for (int i = 1; i < (int)lanes.size() - 1; ++i) {
-		lanes[i]->generate_obstacles();
-	}
-	for (int i = 0; i < (int)lanes.size(); ++i) {
-		lanes[i]->update_and_render();
-	}
+	for (auto lane : lanes)
+		lane->update_and_render();
 }
 
 void Game_map::import_from_file(std::ifstream & fi)

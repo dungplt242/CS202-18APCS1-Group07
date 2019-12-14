@@ -3,7 +3,7 @@
 
 #include<string>
 
-Lane::Lane(Point upper, Point lower):Window(upper, lower)
+Lane::Lane(Point upper, Point lower) : Window(upper, lower)
 {
 	dir_to_right = Random::Int(0, 1);
 }
@@ -17,10 +17,17 @@ Lane::~Lane()
 
 void Lane::update_and_render()
 {
-  update_time();
+	++tick_passed;
+    update_traffic_lights();
 	if (is_stop) {
 		return;
 	}
+
+	if (cooldown && tick_passed % cooldown == 0) {
+		generate_obstacles();
+	}
+
+	// delete obstacles that go out of the window
 	std::vector<std::shared_ptr<Obstacle> > obs_new;
 	for (auto obs : obstacles) {
 		draw_entity(obs, true);	// erase
@@ -78,13 +85,18 @@ bool Lane::check_collide(std::shared_ptr<Player> player)
 	return false;
 }
 
-void Lane::update_time()
+void Lane::set_cooldown(int x)
 {
-	--time;
-	if (time <= 0) {
+	cooldown = x;
+}
+
+void Lane::update_traffic_lights()
+{
+	--traffic_time;
+	if (traffic_time <= 0) {
 		is_stop ^= 1;
 		clear_flag();
-		time = Random::Int(40, 100);
+		traffic_time = Random::Int(40, 100);
 	}
 	show_time_and_flag();
 }
@@ -93,9 +105,9 @@ void Lane::show_time_and_flag()
 {
 	Console::gotoXY(upper_left.x + 1, lower_right.y + 4);
 	if (is_stop) {
-		std::cout << "Red: " << time;
+		std::cout << "Red: " << traffic_time;
 	}
-	else std::cout << "Green: " << time;
+	else std::cout << "Green: " << traffic_time;
 }
 
 void Lane::clear_flag()

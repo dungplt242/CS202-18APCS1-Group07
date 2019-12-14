@@ -2,7 +2,7 @@
 #include <iostream>
 #include <thread>
 
-Game_level::Game_level(int level_id):level_id(level_id)
+Game_level::Game_level(int level_id) : level_id(level_id)
 {
 	int n_lanes = 7, lane_width = 6; // do we need to change each level?
 	player = std::make_shared<Player>();
