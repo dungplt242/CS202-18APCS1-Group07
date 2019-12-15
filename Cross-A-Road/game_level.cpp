@@ -1,6 +1,5 @@
 #include "game_level.h"
 #include <iostream>
-#include <thread>
 #include <string>
 
 Game_level::Game_level(int level_id) : level_id(level_id)
@@ -26,11 +25,21 @@ void Game_level::init()
 	current_map->init();
 }
 
+void Game_level::update()
+{
+	current_map->update();
+}
+
+void Game_level::render()
+{
+	draw_entity(player);
+	current_map->render();
+}
+
 void Game_level::update_and_render()
 {
 	draw_entity(player);
 	current_map->update_and_render();
-	check_collide();
 }
 
 void Game_level::render_only()

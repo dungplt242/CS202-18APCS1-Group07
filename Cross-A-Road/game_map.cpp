@@ -31,9 +31,21 @@ void Game_map::init()
 		lane->init();
 }
 
+void Game_map::update()
+{
+	for (auto& lane : lanes)
+		lane->update();
+}
+
+void Game_map::render()
+{
+	for (auto& lane : lanes)
+		lane->render();
+}
+
 void Game_map::update_and_render()
 {
-	for (auto lane : lanes)
+	for (auto& lane : lanes)
 		lane->update_and_render();
 }
 

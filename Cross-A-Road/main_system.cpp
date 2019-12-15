@@ -83,6 +83,8 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 	std::mutex mtx;
 	bool is_running = true, is_pause = false;
 
+	current_state->render();
+
 	auto main_game_loop = [&](char &ch) //char input 
 	{
 		while (true) {
@@ -95,7 +97,7 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 			current_state->process_input(ch);
 			ch = '.';
 			//std::cout << "Main game loop\n";
-			Sleep(5);
+			// Sleep(30);
 		}
 	};
 
@@ -128,7 +130,6 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 			}
 			break;
 		}
-
 	}
 }
 
