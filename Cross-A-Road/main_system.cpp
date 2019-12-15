@@ -123,10 +123,10 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 			// Pause menu
 			is_pause ^= 1;
 			if (is_pause) {
-				Sleep(100);
+				Sleep(500);
 				show_pause_menu();
-				is_pause ^= 1;
 				current_state->render_box();
+				is_pause ^= 1;
 			}
 			break;
 		}
