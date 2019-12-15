@@ -2,8 +2,26 @@
 #include <algorithm>
 #include <iostream>
 
-Menu::Menu()
-{
+Menu::Menu(bool is_main_menu)
+{	
+	if (is_main_menu) {
+		content = {
+			"NEW GAME",
+			"LOAD GAME",
+			"SETTINGS",
+			"QUIT"
+		};
+	}
+	else {
+		content = {
+			"RESUME",
+			"NEW GAME",
+			"SAVE_GAME",
+			"LOAD GAME",
+			"SETTINGS",
+			"QUIT"
+		};
+	}
 }
 
 
@@ -17,14 +35,14 @@ void Menu::load_menu()
 	draw_rect();
 	max_length = 0;
 	rect.resize(content.size());
-	for (int i = NEW_GAME; i <= QUIT; ++i) max_length = std::max(max_length, (int)content[i].size());
-	for (int i = NEW_GAME; i <= QUIT; ++i) {
+	for (int i = 0; i < content.size(); ++i) max_length = std::max(max_length, (int)content[i].size());
+	for (int i = 0; i < content.size(); ++i) {
 		Point current_point = { (lower_right.x + upper_left.x) / 2 - (int)content.size() + i * 2, (lower_right.y + upper_left.y - max_length) / 2};
 		rect[i].set_pos(current_point + Point(-1, -2), current_point + Point(1, max_length + 1));
 		rect[i].draw_rect('-');
 		print_center_align(content[i], current_point.x);
 	}
-	cursor = NEW_GAME;
+	cursor = 0;
 }
 
 int Menu::get_input()

@@ -6,26 +6,28 @@
 enum MENU_NAME{
 	NEW_GAME,
 	LOAD_GAME,
-	SAVE_GAME,
 	SETTINGS,
 	QUIT
 };
 
+enum PAUSE_MENU_NAME {
+	RESUME2,
+	NEW_GAME2,
+	SAVE_GAME2,
+	LOAD_GAME2,
+	SETTINGS2,
+	QUIT2
+};
+
 class Menu : public Window {
 public:
-	Menu();
+	Menu(bool is_main_menu = true);
 	virtual ~Menu();
 
 	void load_menu();
 	int get_input();
 private:
-	std::vector<std::string> content = {
-		"NEW GAME",
-		"LOAD GAME",
-		"SAVE GAME",
-		"SETTINGS",
-		"QUIT"
-	};
+	std::vector<std::string> content;
 	Point start_point;
 	int max_length; // max length of content menu
 	int cursor;

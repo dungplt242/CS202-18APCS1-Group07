@@ -9,6 +9,7 @@ public:
 	Game_state();
 	void init();
 	void update_and_render();
+	void render_only();
 	void import_from_file(const std::string& file_path);
 	void export_to_file(const std::string& file_path);
 	void process_input(const char &ch);

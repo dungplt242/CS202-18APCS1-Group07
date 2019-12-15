@@ -8,12 +8,12 @@
 class Game_module {
 public:
 	void show_main();
+	void show_pause_menu();
 private:
 	void do_menu_choice();
 	void start_new_game();
 	void start_game(std::shared_ptr<Game_state> start_state);
-	void load_game(std::shared_ptr<Game_state> state);
+	void load_game();
 	void save_game();
-	Menu menu;
 	std::shared_ptr<Game_state> current_state;
 };

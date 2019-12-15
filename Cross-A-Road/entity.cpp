@@ -5,6 +5,7 @@
 #include <fstream>
 #include <cmath>
 #include <vector>
+#include "random.h"
 
 using Console::gotoXY;
 
@@ -50,13 +51,26 @@ void Entity::load_icon(bool isFlipped)
 		std::getline(fin, mp[i]);
 		if (mxlength < (int)mp[i].size()) mxlength = (int)mp[i].size();
 	}
+	auto Flip = [&](char c) {
+		switch (c) {
+		case '\\': return '/';
+		case '/': return '\\';
+		case '(': return ')';
+		case ')': return '(';
+		case '<': return '>';
+		case '>': return '<';
+		default: return c;
+		}
+
+	};
 	for (int i = 0; i < n; ++i) {
 		for (int j = 0; j < mp[i].size(); ++j) {
 			int color;
 			fin >> color;
+			//color = Raxndom::Int(0, 14);
 			if (mp[i][j] != ' ') {
-				if (isFlipped && 0)
-					pixels.push_back({ {i, mxlength - j - 1}, mp[i][j], color });
+				if (isFlipped)
+					pixels.push_back({ {i, mxlength - j - 1}, Flip(mp[i][j]), color });
 				else pixels.push_back({ {i, j}, mp[i][j], color });
 			}
 		}

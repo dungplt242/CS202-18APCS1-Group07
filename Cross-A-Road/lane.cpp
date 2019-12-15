@@ -18,8 +18,10 @@ Lane::~Lane()
 
 void Lane::init()
 {
-	for (int i = 0; i < 300; ++i)
+	traffic_time = 180 + Random::Int(0, 40);
+	for (int i = 0; i < 200; ++i)
 		update_and_render();
+
 }
 
 void Lane::update_and_render()
@@ -52,6 +54,15 @@ void Lane::update_and_render()
 	obstacles.swap(obs_new);
 }
 
+void Lane::render_only()
+{
+	if (is_special) return;
+	update_traffic_lights();
+	for (auto obs : obstacles) {
+		draw_entity(obs);
+	}
+}
+
 void Lane::generate_obstacles()
 {
 	int type = Random::Int(0, 4);
@@ -70,6 +81,7 @@ void Lane::generate_obstacles()
 
 void Lane::export_to_file(std::ofstream & fo)
 {
+	fo << dir_to_right << '\n';
 	fo << obstacles.size() << std::endl;
 	for (int i = 0; i < (int)obstacles.size(); ++i)
 		obstacles[i]->export_to_file(fo);
@@ -77,6 +89,7 @@ void Lane::export_to_file(std::ofstream & fo)
 
 void Lane::import_from_file(std::ifstream & fi)
 {
+	fi >> dir_to_right;
 	int obstacles_size;
 	fi >> obstacles_size;
 	obstacles.reserve(obstacles_size);
@@ -88,8 +101,11 @@ void Lane::import_from_file(std::ifstream & fi)
 bool Lane::check_collide(std::shared_ptr<Player> player)
 {
 	for (int i = 0; i < obstacles.size(); i++)
-		if (obstacles[i]->collide(player))
+		if (obstacles[i]->collide(player)) {
+			player->die();
+			// Make sound of obstacles
 			return true;
+		}
 	return false;
 }
 
@@ -104,7 +120,7 @@ void Lane::update_traffic_lights()
 	clear_flag();
 	if (traffic_time <= 0) {
 		is_stop ^= 1;
-		traffic_time = Random::Int(40, 100);
+		traffic_time = Random::Int(40, 80) + is_stop * 20;
 	}
 	show_time_and_flag();
 }

@@ -1,6 +1,7 @@
 #include "player.h"
 #include <vector>
 #include <iostream>
+#include "console.h"
 
 #define KEY_UP 72
 #define KEY_DOWN 80
@@ -32,6 +33,11 @@ Point Player::get_loca()
 void Player::move(Point d)
 {
 	location = d;
+}
+
+void Player::die()
+{
+	Console::MakeSound("Data/Sound/player_die.wav");
 }
 
 void Player::process_input(const char & ch, int lane_width)

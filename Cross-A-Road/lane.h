@@ -12,6 +12,7 @@ public:
 	virtual ~Lane();
 	void init();
 	void update_and_render();
+	void render_only();
 	void generate_obstacles();
 	void export_to_file(std::ofstream& fo);
 	void import_from_file(std::ifstream& fi);
@@ -21,7 +22,7 @@ protected:
 	std::vector<std::shared_ptr<Obstacle>> obstacles;
 	int tick_passed = 0;
 	int cooldown = 0;		// time between consecutive obstacle generation
-	bool is_stop = false;
+	bool is_stop = true;
 	int traffic_time = 0; // change between stop and non-stop
 	bool dir_to_right;
 	bool is_special; // true when is first and last lane

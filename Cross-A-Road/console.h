@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+
 #define HOUT GetStdHandle(STD_OUTPUT_HANDLE)
 #define HIN GetStdHandle(STD_INPUT_HANDLE)
 #define KEY_UP 72
@@ -34,4 +36,5 @@ namespace Console
 	void clear_screen();
 	void full_screen();
 	void SetColor(int ForgC);
+	void MakeSound(const char* filename);
 }

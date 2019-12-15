@@ -13,8 +13,7 @@ Game_level::Game_level(int level_id) : level_id(level_id)
 		Point(upper_left.x, lower_right.y + 4),
 		Point(upper_left.x + 7, lower_right.y + 20)
 	);
-	level_display->draw_rect('+');
-	level_display->print_center_align("Level " + std::to_string(level_id), upper_left.x + 2);
+	render_only();
 }
 
 Game_level::~Game_level()
@@ -32,6 +31,15 @@ void Game_level::update_and_render()
 	draw_entity(player);
 	current_map->update_and_render();
 	check_collide();
+}
+
+void Game_level::render_only()
+{
+	level_display->draw_rect('+');
+	level_display->print_center_align("Level " + std::to_string(level_id), upper_left.x + 2);
+	current_map->render_only();
+	draw_entity(player);
+
 }
 
 bool Game_level::is_finished()
@@ -71,7 +79,8 @@ void Game_level::export_to_file(std::ofstream& fo)
 
 bool Game_level::check_collide()
 {
-	if (current_map->check_collide(player))
+	if (current_map->check_collide(player)) {
 		return true;
+	}
 	return false;
 }

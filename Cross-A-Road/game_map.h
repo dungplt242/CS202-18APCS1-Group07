@@ -11,6 +11,7 @@ public:
 	bool is_finished(std::shared_ptr<Player> player);
 	void init();
 	void update_and_render();
+	void render_only();
 	void import_from_file(std::ifstream& fi);
 	void export_to_file(std::ofstream& fo);
 	bool check_collide(std::shared_ptr<Player> player);

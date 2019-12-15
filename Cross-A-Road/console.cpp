@@ -1,5 +1,7 @@
 #include "console.h"
 #include <Windows.h>
+#include <mmsystem.h>
+#pragma comment(lib, "winmm.lib")
 
 namespace Console {
 	void gotoXY(int x, int y) {
@@ -30,6 +32,12 @@ namespace Console {
 			SetConsoleTextAttribute(hStdOut, wColor);
 		}
 		return;
+	}
+
+	void MakeSound(const char* filename)
+	{
+		PlaySoundA((LPCSTR)(filename), NULL, SND_FILENAME | SND_ASYNC);
+		
 	}
 
 	
