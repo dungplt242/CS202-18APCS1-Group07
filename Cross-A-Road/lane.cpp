@@ -1,6 +1,5 @@
 #include "lane.h"
 #include "random.h"
-
 #include <string>
 
 Lane::Lane(Point upper, Point lower, bool is_special) : Window(upper, lower), is_special(is_special)
@@ -62,11 +61,11 @@ void Lane::render()
 	if (is_special || is_rendered) return;
 	
 	render_traffic_light();
-	for (auto obs : obstacles) 
+	for (auto obs : obstacles) {
 		if (contain(obs)) {
 			draw_entity(obs);
 		}
-
+	}
 	is_rendered = true;
 }
 
@@ -102,15 +101,6 @@ void Lane::update_and_render()
 	is_rendered = true;
 }
 
-void Lane::render_only()
-{
-	if (is_special) return;
-	update_traffic_lights();
-	for (auto obs : obstacles) {
-		draw_entity(obs);
-	}
-}
-
 void Lane::generate_obstacles()
 {
 	int type = Random::Int(0, 4);
@@ -129,7 +119,7 @@ void Lane::generate_obstacles()
 
 void Lane::export_to_file(std::ofstream & fo)
 {
-	fo << is_rendered << std::endl;
+	//fo << is_rendered << std::endl;
 	fo << tick_passed << std::endl;
 	fo << cooldown << std::endl;
 	fo << is_stop << std::endl;
@@ -143,7 +133,7 @@ void Lane::export_to_file(std::ofstream & fo)
 
 void Lane::import_from_file(std::ifstream & fi)
 {
-	fi >> is_rendered;
+	//fi >> is_rendered;
 	fi >> tick_passed;
 	fi >> cooldown;
 	fi >> is_stop;
@@ -152,7 +142,7 @@ void Lane::import_from_file(std::ifstream & fi)
 	fi >> dir_to_right;
 	int obstacles_size;
 	fi >> obstacles_size;
-	obstacles.reserve(obstacles_size);
+	//obstacles.reserve(obstacles_size);
 	for (int i = 0; i < obstacles_size; ++i) {
 		std::shared_ptr<Obstacle> obs = Obstacle::obs_import_from_file(fi);
 		obstacles.push_back(obs);

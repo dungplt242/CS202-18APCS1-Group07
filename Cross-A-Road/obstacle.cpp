@@ -8,12 +8,11 @@
 Obstacle::Obstacle()
 {
 }
-
-Obstacle::Obstacle(Point loca, Point direction):Entity(loca), direction(direction)
+Obstacle::Obstacle(Point loca, Point direction) :Entity(loca), direction(direction)
 {
 }
 
-Obstacle::Obstacle(Point loca, Point direction, int tick_passed) : Entity(loca), direction(direction), tick_passed(tick_passed)
+Obstacle::Obstacle(Point loca, Point direction, int tick_passed):Entity(loca), direction(direction), tick_passed(tick_passed)
 {
 }
 
@@ -32,8 +31,8 @@ std::shared_ptr<Obstacle> Obstacle::Create(ObstacleType type, Point loca_obs, Po
 	switch (type) {
 	case OT_Car: return std::make_shared<Car>(loca_obs, dir);
 	case OT_Bus: return std::make_shared<Bus>(loca_obs, dir);
-	case OT_Truck: return std::make_shared<Truck>(loca_obs, dir); 
-	case OT_Bird: return std::make_shared<Bird>(loca_obs, dir); 
+	case OT_Truck: return std::make_shared<Truck>(loca_obs, dir);
+	case OT_Bird: return std::make_shared<Bird>(loca_obs, dir);
 	case OT_Dinasour: return std::make_shared<Dinosaur>(loca_obs, dir);
 	}
 	return std::shared_ptr<Obstacle>();
@@ -66,13 +65,6 @@ std::shared_ptr<Obstacle> Obstacle::obs_import_from_file(std::ifstream & fi)
 	fi >> type;
 	loca_obs.import_from_file(fi);
 	dir.import_from_file(fi);
-	switch (type) {
-	case OT_Car: return std::make_shared<Car>(loca_obs, dir, tick_passed);
-	case OT_Bus: return std::make_shared<Bus>(loca_obs, dir, tick_passed);
-	case OT_Truck: return std::make_shared<Truck>(loca_obs, dir, tick_passed);
-	case OT_Bird: return std::make_shared<Bird>(loca_obs, dir, tick_passed);
-	case OT_Dinasour: return std::make_shared<Dinosaur>(loca_obs, dir, tick_passed);
-	}
-	return std::shared_ptr<Obstacle>();
+	return Create(static_cast<ObstacleType>(type), loca_obs, dir);
 }
 
