@@ -9,7 +9,7 @@ public:
 	Game_level(int level_id = 1);
 	~Game_level();
 	void init();
-	void render_only();
+	void render_box();
 	void update();
 	void render();
 	void update_and_render();	// optimized

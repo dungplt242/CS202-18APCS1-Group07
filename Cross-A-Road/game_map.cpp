@@ -17,7 +17,7 @@ Game_map::Game_map(Point upper_left, Point lower_right, int n_lanes, int lane_wi
 		}
 		//lanes[i]->draw_rect('#'); 
 	}
-	render_only();
+	render_box();
 }
 
 bool Game_map::is_finished(std::shared_ptr<Player> player)
@@ -49,14 +49,13 @@ void Game_map::update_and_render()
 		lane->update_and_render();
 }
 
-void Game_map::render_only()
+void Game_map::render_box()
 {
 	for (int i = 0; i < lanes.size(); ++i) {
 		//draw pavement & road marking
 		if (i == 1)  lanes[i]->draw_road_marking(true, false);
 		else if (i == (int)lanes.size() - 2) lanes[i]->draw_road_marking(false, true);
 		else if (i > 1 && i <(int)lanes.size() - 2) lanes[i]->draw_road_marking(false, false);
-		lanes[i]->render_only();
 	}
 }
 

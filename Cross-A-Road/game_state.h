@@ -11,7 +11,7 @@ public:
 	void update();
 	void render();
 	void update_and_render();
-	void render_only();
+	void render_box();
 	void import_from_file(const std::string& file_path);
 	void export_to_file(const std::string& file_path);
 	void process_input(const char &ch);

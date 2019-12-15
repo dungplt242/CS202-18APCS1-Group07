@@ -12,7 +12,7 @@ Game_level::Game_level(int level_id) : level_id(level_id)
 		Point(upper_left.x, lower_right.y + 4),
 		Point(upper_left.x + 7, lower_right.y + 20)
 	);
-	render_only();
+	render_box();
 }
 
 Game_level::~Game_level()
@@ -42,13 +42,12 @@ void Game_level::update_and_render()
 	current_map->update_and_render();
 }
 
-void Game_level::render_only()
+void Game_level::render_box()
 {
 	level_display->draw_rect('+');
 	level_display->print_center_align("Level " + std::to_string(level_id), upper_left.x + 2);
-	current_map->render_only();
-	draw_entity(player);
-
+	current_map->render_box();
+	
 }
 
 bool Game_level::is_finished()

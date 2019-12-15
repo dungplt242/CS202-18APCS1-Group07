@@ -72,7 +72,6 @@ void Game_module::do_menu_choice()
 void Game_module::start_new_game()
 {
 	auto new_state = std::make_shared<Game_state>();
-	new_state->render_only();
 	new_state->init();
 	start_game(new_state);
 }
@@ -80,9 +79,10 @@ void Game_module::start_new_game()
 void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 {
 	current_state = start_state;
+	current_state->render_box();
 	std::mutex mtx;
 	bool is_running = true, is_pause = false;
-
+	bool first_render = true;
 	current_state->render();
 
 	auto main_game_loop = [&](char &ch) //char input 
@@ -106,7 +106,7 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 	std::thread t1(main_game_loop, std::ref(ch));
 	// input loop
 	while (true) {
-		
+
 		// process input
 		ch = _getch();
 		//std::cout << "Input: " << ch << '\n';
@@ -126,7 +126,7 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 				Sleep(100);
 				show_pause_menu();
 				is_pause ^= 1;
-				current_state->render_only();
+				current_state->render_box();
 			}
 			break;
 		}

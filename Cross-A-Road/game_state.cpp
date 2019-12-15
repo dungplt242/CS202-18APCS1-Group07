@@ -47,11 +47,11 @@ void Game_state::update_and_render()
 	if (current_level->check_collide()) play_again(); //lose
 }
 
-void Game_state::render_only()
+void Game_state::render_box()
 {
 	Console::clear_screen();
 	draw_rect('=');
-	current_level->render_only();
+	current_level->render_box();
 }
 
 void Game_state::import_from_file(const std::string& file_path)
