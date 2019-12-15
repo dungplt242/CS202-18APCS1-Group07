@@ -9,7 +9,9 @@ public:
 	Game_level(int level_id = 1);
 	~Game_level();
 	void init();
-	void update_and_render();
+	void update();
+	void render();
+	void update_and_render();	// optimized
 	bool is_finished(); 
 	void process_input(const char &ch);
 	int get_level_id();

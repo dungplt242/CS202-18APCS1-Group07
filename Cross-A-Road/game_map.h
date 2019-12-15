@@ -10,7 +10,9 @@ public:
 	Game_map(Point upper_left, Point lower_right, int n_lanes, int lane_width, int diff);
 	bool is_finished(std::shared_ptr<Player> player);
 	void init();
-	void update_and_render();
+	void update();
+	void render();
+	void update_and_render();	// optimized
 	void import_from_file(std::ifstream& fi);
 	void export_to_file(std::ofstream& fo);
 	bool check_collide(std::shared_ptr<Player> player);

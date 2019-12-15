@@ -8,6 +8,8 @@ class Game_state : Window {
 public:
 	Game_state();
 	void init();
+	void update();
+	void render();
 	void update_and_render();
 	void import_from_file(const std::string& file_path);
 	void export_to_file(const std::string& file_path);
