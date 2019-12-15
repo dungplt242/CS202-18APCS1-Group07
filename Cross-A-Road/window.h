@@ -23,7 +23,10 @@ public:
 	void print_center_align(std::string st, int line);
 	
 	void set_pos(Point upper, Point lower);
-	
+
+	void import_from_file(std::ifstream& fi);
+	void export_to_file(std::ofstream& fo);
+
 protected:
 	Point upper_left, lower_right;
 

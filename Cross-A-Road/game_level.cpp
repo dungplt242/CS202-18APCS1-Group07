@@ -74,6 +74,7 @@ int Game_level::get_level_id()
 void Game_level::import_from_file(std::ifstream &fi)
 {
 	fi >> level_id;
+	level_display->import_from_file(fi);
 	player->import_from_file(fi);
 	current_map->import_from_file(fi);
 }
@@ -81,6 +82,7 @@ void Game_level::import_from_file(std::ifstream &fi)
 void Game_level::export_to_file(std::ofstream& fo)
 {
 	fo << level_id << std::endl;
+	level_display->export_to_file(fo);
 	player->export_to_file(fo);
 	current_map->export_to_file(fo);
 }

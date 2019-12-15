@@ -11,6 +11,10 @@ Dinosaur::Dinosaur(Point loca, Point dir):Obstacle(loca, dir)
 	load_icon(dir.y == -1);
 }
 
+Dinosaur::Dinosaur(Point loca, Point direction, int tick_passed) : Obstacle(loca, direction, tick_passed)
+{
+}
+
 Dinosaur::~Dinosaur()
 {
 	//location = { };

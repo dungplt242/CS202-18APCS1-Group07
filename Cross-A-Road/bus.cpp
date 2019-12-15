@@ -11,6 +11,10 @@ Bus::Bus(Point loca, Point dir):Obstacle(loca, dir)
 	load_icon(dir.y == -1);
 }
 
+Bus::Bus(Point loca, Point direction, int tick_passed) : Obstacle(loca, direction, tick_passed)
+{
+}
+
 Bus::~Bus()
 {
 	//location = { };

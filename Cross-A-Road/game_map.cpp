@@ -61,6 +61,7 @@ void Game_map::render_box()
 
 void Game_map::import_from_file(std::ifstream & fi)
 {
+	fi >> difficulty;
 	int lanes_size;
 	fi >> lanes_size;
 	lanes.resize(lanes_size);
@@ -70,6 +71,7 @@ void Game_map::import_from_file(std::ifstream & fi)
 
 void Game_map::export_to_file(std::ofstream & fo)
 {
+	fo << difficulty << std::endl;
 	fo << lanes.size() << std::endl;
 	for (int i = 0; i < (int)lanes.size(); ++i)
 		lanes[i]->export_to_file(fo);

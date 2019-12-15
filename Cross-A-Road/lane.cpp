@@ -129,6 +129,12 @@ void Lane::generate_obstacles()
 
 void Lane::export_to_file(std::ofstream & fo)
 {
+	fo << is_rendered << std::endl;
+	fo << tick_passed << std::endl;
+	fo << cooldown << std::endl;
+	fo << is_stop << std::endl;
+	fo << traffic_time << std::endl;
+	fo << is_special << std::endl;
 	fo << dir_to_right << '\n';
 	fo << obstacles.size() << std::endl;
 	for (int i = 0; i < (int)obstacles.size(); ++i)
@@ -137,6 +143,12 @@ void Lane::export_to_file(std::ofstream & fo)
 
 void Lane::import_from_file(std::ifstream & fi)
 {
+	fi >> is_rendered;
+	fi >> tick_passed;
+	fi >> cooldown;
+	fi >> is_stop;
+	fi >> traffic_time;
+	fi >> is_special;
 	fi >> dir_to_right;
 	int obstacles_size;
 	fi >> obstacles_size;

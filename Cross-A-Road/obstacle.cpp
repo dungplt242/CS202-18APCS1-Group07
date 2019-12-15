@@ -13,6 +13,10 @@ Obstacle::Obstacle(Point loca, Point direction):Entity(loca), direction(directio
 {
 }
 
+Obstacle::Obstacle(Point loca, Point direction, int tick_passed) : Entity(loca), direction(direction), tick_passed(tick_passed)
+{
+}
+
 Obstacle::~Obstacle()
 {
 
@@ -48,6 +52,7 @@ bool Obstacle::is_far_enough(Point p, int distance)
 
 void Obstacle::export_to_file(std::ofstream & fo)
 {
+	fo << tick_passed << std::endl;
 	fo << obs_type() << " ";
 	location.export_to_file(fo);
 	direction.export_to_file(fo);
@@ -55,17 +60,18 @@ void Obstacle::export_to_file(std::ofstream & fo)
 
 std::shared_ptr<Obstacle> Obstacle::obs_import_from_file(std::ifstream & fi)
 {
-	int type;
+	int type, tick_passed;
 	Point dir, loca_obs;
+	fi >> tick_passed;
 	fi >> type;
 	loca_obs.import_from_file(fi);
 	dir.import_from_file(fi);
 	switch (type) {
-	case OT_Car: return std::make_shared<Car>(loca_obs, dir);
-	case OT_Bus: return std::make_shared<Bus>(loca_obs, dir);
-	case OT_Truck: return std::make_shared<Truck>(loca_obs, dir);
-	case OT_Bird: return std::make_shared<Bird>(loca_obs, dir);
-	case OT_Dinasour: return std::make_shared<Dinosaur>(loca_obs, dir);
+	case OT_Car: return std::make_shared<Car>(loca_obs, dir, tick_passed);
+	case OT_Bus: return std::make_shared<Bus>(loca_obs, dir, tick_passed);
+	case OT_Truck: return std::make_shared<Truck>(loca_obs, dir, tick_passed);
+	case OT_Bird: return std::make_shared<Bird>(loca_obs, dir, tick_passed);
+	case OT_Dinasour: return std::make_shared<Dinosaur>(loca_obs, dir, tick_passed);
 	}
 	return std::shared_ptr<Obstacle>();
 }

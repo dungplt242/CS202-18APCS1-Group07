@@ -136,3 +136,15 @@ void Window::print_center_align(std::string st, int line)
 void Window::set_pos(Point upper, Point lower) {
 	upper_left = upper, lower_right = lower;
 }
+
+void Window::import_from_file(std::ifstream & fi)
+{
+	upper_left.import_from_file(fi);
+	lower_right.import_from_file(fi);
+}
+
+void Window::export_to_file(std::ofstream & fo)
+{
+	upper_left.export_to_file(fo);
+	lower_right.export_to_file(fo);
+}
