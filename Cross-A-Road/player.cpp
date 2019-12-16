@@ -32,6 +32,7 @@ Point Player::get_loca()
 
 void Player::move(Point d)
 {
+	//Console::MakeSound("Data/Sound/move.wav");
 	location = d;
 }
 

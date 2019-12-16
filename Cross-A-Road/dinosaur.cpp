@@ -18,8 +18,7 @@ Dinosaur::Dinosaur(Point loca, Point direction, int tick_passed) : Obstacle(loca
 
 Dinosaur::~Dinosaur()
 {
-	//location = { };
-	load_icon();
+
 }
 
 std::string Dinosaur::type_name()

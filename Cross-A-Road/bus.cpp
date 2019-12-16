@@ -18,8 +18,6 @@ Bus::Bus(Point loca, Point direction, int tick_passed) : Obstacle(loca, directio
 
 Bus::~Bus()
 {
-	//location = { };
-	load_icon();
 }
 
 std::string Bus::type_name()

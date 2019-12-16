@@ -13,6 +13,7 @@ void Game_state::init()
 
 void Game_state::level_up()
 {
+	//Console::MakeSound("Data/Sound/finish.wav");
 	current_level = std::make_shared<Game_level>(current_level->get_level_id() + 1);
 	current_level->init();
 	current_level->render();
