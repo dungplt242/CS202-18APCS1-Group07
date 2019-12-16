@@ -23,7 +23,7 @@ int Car::obs_type()
 
 void Car::die()
 {
-	Console::MakeSound("Data/Sound/car_die.wav");
+	Console::make_sound("Data/Sound/car_die.wav");
 }
 
 Car::~Car()

@@ -32,6 +32,6 @@ int Truck::obs_type()
 
 void Truck::die()
 {
-	Console::MakeSound("Data/Sound/car_die.wav");
+	Console::make_sound("Data/Sound/car_die.wav");
 
 }

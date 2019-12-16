@@ -31,5 +31,5 @@ int Bird::obs_type()
 
 void Bird::die()
 {
-	Console::MakeSound("Data/Sound/bird_die.wav");
+	Console::make_sound("Data/Sound/bird_die.wav");
 }

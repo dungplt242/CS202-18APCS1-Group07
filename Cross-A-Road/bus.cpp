@@ -32,5 +32,5 @@ int Bus::obs_type()
 
 void Bus::die()
 {
-	Console::MakeSound("Data/Sound/car_die.wav");
+	Console::make_sound("Data/Sound/car_die.wav");
 }

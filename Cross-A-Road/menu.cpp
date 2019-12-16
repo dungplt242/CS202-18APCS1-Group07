@@ -4,7 +4,7 @@
 
 Menu::Menu(bool is_main_menu)
 {	
-	Console::MakeBackgroundSound();
+	Console::make_background_sound();
 	if (is_main_menu) {
 		logo_filepath = "Data/logo.txt";
 		content = {

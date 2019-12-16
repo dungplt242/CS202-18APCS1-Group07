@@ -37,18 +37,26 @@ namespace Console {
 		return;
 	}
 
-	void MakeBackgroundSound(bool is_menu)
+	int sound_active = true;
+
+	void make_background_sound(bool is_menu)
 	{
+		if (!sound_active) return;
 		std::string st = "Data/Sound/Background2.wav";
 		if (is_menu) st = "Data/Sound/Background.wav";
 		PlaySoundA((LPCSTR)(st.c_str()), NULL, SND_FILENAME | SND_ASYNC | SND_LOOP );
 	}
 
-	void MakeSound(const char* filename)
+	void make_sound(const char* filename)
 	{
+		if (!sound_active) return;
 		PlaySoundA((LPCSTR)(filename), NULL, SND_FILENAME | SND_ASYNC);
-		//Sleep(2000);
-		//MakeBackgroundSound();
+	}
+
+	void reverse_sound()
+	{
+		sound_active ^= 1;
+		PlaySoundA(NULL, NULL, NULL);
 	}
 
 	

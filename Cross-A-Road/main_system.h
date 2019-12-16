@@ -9,6 +9,7 @@ class Game_module {
 public:
 	void show_main();
 	int show_pause_menu();
+	void show_setting_menu();
 private:
 	void do_menu_choice();
 	void start_new_game();

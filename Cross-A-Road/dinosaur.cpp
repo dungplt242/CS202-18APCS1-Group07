@@ -33,6 +33,6 @@ int Dinosaur::obs_type()
 
 void Dinosaur::die()
 {
-	Console::MakeSound("Data/Sound/dinosaur_die.wav");
+	Console::make_sound("Data/Sound/dinosaur_die.wav");
 
 }

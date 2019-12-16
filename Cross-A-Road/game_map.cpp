@@ -2,7 +2,6 @@
 #include "game_map.h"
 #include "random.h"
 #include "railway.h"
-
 Game_map::Game_map(Point upper_left, Point lower_right, int n_lanes, int lane_width, int diff) 
 	: difficulty(diff), lanes(n_lanes), Window(upper_left, lower_right)
 {

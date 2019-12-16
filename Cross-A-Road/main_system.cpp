@@ -28,6 +28,7 @@ void Game_module::show_main()
 			break;
 		case MENU_NAME::SETTINGS:
 			// Settings game
+			Console::reverse_sound();
 			break;
 		case MENU_NAME::QUIT:
 			exit(0);
@@ -60,11 +61,18 @@ int Game_module::show_pause_menu()
 		break;
 	case PAUSE_MENU_NAME::SETTINGS2:
 		// Settings game
+		//show_setting_menu();
+		Console::reverse_sound();
 		break;
 	case PAUSE_MENU_NAME::QUIT2:
 		return -1;
 	}
 	return 0;
+}
+
+void Game_module::show_setting_menu()
+{
+
 }
 
 void Game_module::do_menu_choice()
