@@ -8,7 +8,7 @@
 class Game_module {
 public:
 	void show_main();
-	void show_pause_menu();
+	int show_pause_menu();
 private:
 	void do_menu_choice();
 	void start_new_game();

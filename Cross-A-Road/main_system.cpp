@@ -35,7 +35,7 @@ void Game_module::show_main()
 	//start_game();
 }
 
-void Game_module::show_pause_menu()
+int Game_module::show_pause_menu()
 {
 	Menu menu(0);
 	Console::clear_screen();
@@ -61,8 +61,9 @@ void Game_module::show_pause_menu()
 		// Settings game
 		break;
 	case PAUSE_MENU_NAME::QUIT2:
-		exit(0);
+		return -1;
 	}
+	return 0;
 }
 
 void Game_module::do_menu_choice()
@@ -104,6 +105,12 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 
 	std::thread t1(main_game_loop, std::ref(ch));
 	// input loop
+	auto return_to_menu = [&]() {
+		mtx.lock();
+		is_running = false;
+		mtx.unlock();
+		t1.join();
+	};
 	while (true) {
 
 		// process input
@@ -111,10 +118,7 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 		//std::cout << "Input: " << ch << '\n';
 		switch (ch) {
 		case 'a':
-			mtx.lock();
-			is_running = false;
-			mtx.unlock();
-			t1.join();
+			return_to_menu();
 			return;
 		case 'p':
 			// Pause menu
@@ -123,7 +127,12 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 			is_pause ^= 1;
 			if (is_pause) {
 				Sleep(500);
-				show_pause_menu();
+				int signal = show_pause_menu();
+				if (signal == -1) {
+					// return to menu
+					return_to_menu();
+					return;
+				}
 				current_state->render_box();
 				current_state->update();
 				current_state->render();

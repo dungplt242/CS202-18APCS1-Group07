@@ -127,7 +127,7 @@ void Window::draw_entity(std::shared_ptr<Entity> entity, bool isErase)
 
 void Window::print_center_align(std::string st, int line)
 {
-	int y = ((lower_right.y + upper_left.y + 1) - st.size()) / 2;
+	int y = ((lower_right.y + upper_left.y) - st.size()) / 2;
 	gotoXY(line, y);
 	std::cout << st.c_str();
 }

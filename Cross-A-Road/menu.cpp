@@ -5,6 +5,7 @@
 Menu::Menu(bool is_main_menu)
 {	
 	if (is_main_menu) {
+		logo_filepath = "Data/logo.txt";
 		content = {
 			"NEW GAME",
 			"LOAD GAME",
@@ -13,13 +14,14 @@ Menu::Menu(bool is_main_menu)
 		};
 	}
 	else {
+		logo_filepath = "Data/teamname.txt";
 		content = {
 			"RESUME",
 			"NEW GAME",
 			"SAVE_GAME",
 			"LOAD GAME",
 			"SETTINGS",
-			"QUIT"
+			"QUIT GAME"
 		};
 	}
 }
@@ -33,11 +35,13 @@ Menu::~Menu()
 void Menu::load_menu()
 {
 	draw_rect();
+	load_logo();
 	max_length = 0;
 	rect.resize(content.size());
 	for (int i = 0; i < content.size(); ++i) max_length = std::max(max_length, (int)content[i].size());
 	for (int i = 0; i < content.size(); ++i) {
-		Point current_point = { (lower_right.x + upper_left.x) / 2 - (int)content.size() + i * 2, (lower_right.y + upper_left.y - max_length) / 2};
+		Point current_point = { logo_size / 2 + (lower_right.x + upper_left.x) / 2 - (int)content.size() + i * 2, 
+									(lower_right.y + upper_left.y - max_length) / 2};
 		rect[i].set_pos(current_point + Point(-1, -2), current_point + Point(1, max_length + 1));
 		rect[i].draw_rect('-');
 		print_center_align(content[i], current_point.x);
@@ -74,10 +78,20 @@ int Menu::get_input()
 	}
 }
 
+void Menu::load_logo()
+{
+	std::ifstream fin(logo_filepath);
+	std::string st;
+	logo_size = 0;
+	while (getline(fin, st)) {
+		print_center_align(st, ++logo_size + 3);
+	}
+}
+
 void Menu::Unchoose(int id) {
 	turn_off_reverse_color();
 	rect[id].draw_full_rect(' ');
-	int line = (lower_right.x + upper_left.x) / 2 - content.size() + id * 2;
+	int line = logo_size / 2 + (lower_right.x + upper_left.x) / 2 - content.size() + id * 2;
 	print_center_align(content[id], line);
 	rect[id].draw_rect('-');
 }
@@ -85,7 +99,7 @@ void Menu::Unchoose(int id) {
 void Menu::Choose(int id) {
 	turn_on_reverse_color();
 	rect[id].draw_full_rect(' ');
-	int line = (lower_right.x + upper_left.x) / 2 - content.size() + id * 2;
+	int line = logo_size / 2 + (lower_right.x + upper_left.x) / 2 - content.size() + id * 2;
 	print_center_align(content[id], line);
 	turn_off_reverse_color();
 	rect[id].draw_rect('-');

@@ -10,7 +10,7 @@ Game_level::Game_level(int level_id) : level_id(level_id)
 	current_map = std::make_shared<Game_map>(upper_left, lower_right, n_lanes, lane_width, level_id); 
 	level_display = std::make_shared<Window>(
 		Point(upper_left.x, lower_right.y + 4),
-		Point(upper_left.x + 7, lower_right.y + 20)
+		Point(upper_left.x + 7, lower_right.y + 21)
 	);
 	render_box();
 }
