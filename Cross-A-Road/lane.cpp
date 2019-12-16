@@ -1,6 +1,7 @@
 #include "lane.h"
 #include "random.h"
 #include <string>
+#include <Windows.h>
 
 Lane::Lane(Point upper, Point lower, bool is_special) : Window(upper, lower), is_special(is_special)
 {
@@ -152,8 +153,9 @@ bool Lane::check_collide(std::shared_ptr<Player> player)
 {
 	for (int i = 0; i < obstacles.size(); i++)
 		if (obstacles[i]->collide(player)) {
-			player->die();
 			// Make sound of obstacles
+			obstacles[i]->die();
+			Sleep(2000);
 			return true;
 		}
 	return false;

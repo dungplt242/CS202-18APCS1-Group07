@@ -63,11 +63,12 @@ void Entity::load_icon(bool isFlipped)
 		}
 
 	};
+	int col = Random::Int(0, 14);
 	for (int i = 0; i < n; ++i) {
 		for (int j = 0; j < mp[i].size(); ++j) {
 			int color;
 			fin >> color;
-			//color = Raxndom::Int(0, 14);
+			color = col;
 			if (mp[i][j] != ' ') {
 				if (isFlipped)
 					pixels.push_back({ {i, mxlength - j - 1}, Flip(mp[i][j]), color });

@@ -1,4 +1,5 @@
 #include "bus.h"
+#include "console.h"
 
 Bus::Bus()
 {
@@ -17,8 +18,6 @@ Bus::Bus(Point loca, Point direction, int tick_passed) : Obstacle(loca, directio
 
 Bus::~Bus()
 {
-	//location = { };
-	load_icon();
 }
 
 std::string Bus::type_name()
@@ -29,4 +28,9 @@ std::string Bus::type_name()
 int Bus::obs_type()
 {
 	return 1;
+}
+
+void Bus::die()
+{
+	Console::MakeSound("Data/Sound/car_die.wav");
 }

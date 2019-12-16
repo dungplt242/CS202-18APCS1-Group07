@@ -9,6 +9,6 @@ public:
 	~Bird();
 	std::string type_name();
 	int obs_type();
-
+	void die();
 private:
 };

@@ -20,6 +20,7 @@ public:
 	bool is_far_enough(Point p, int distance);
 	void export_to_file(std::ofstream& fo);
 	static std::shared_ptr<Obstacle> obs_import_from_file(std::ifstream &fi);
+	virtual void die() = 0;
 private:
 	void move();
 	int tick_passed = 0;

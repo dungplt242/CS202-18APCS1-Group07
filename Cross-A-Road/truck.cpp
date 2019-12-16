@@ -1,4 +1,5 @@
 #include "truck.h"
+#include "console.h"
 
 Truck::Truck()
 {
@@ -27,4 +28,10 @@ std::string Truck::type_name()
 int Truck::obs_type()
 {
 	return 2;
+}
+
+void Truck::die()
+{
+	Console::MakeSound("Data/Sound/car_die.wav");
+
 }

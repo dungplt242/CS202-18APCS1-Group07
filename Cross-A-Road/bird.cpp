@@ -1,5 +1,5 @@
 #include "bird.h"
-
+#include "console.h"
 Bird::Bird()
 {
 	//location = { };
@@ -27,4 +27,9 @@ std::string Bird::type_name()
 int Bird::obs_type()
 {
 	return 3;
+}
+
+void Bird::die()
+{
+	Console::MakeSound("Data/Sound/bird_die.wav");
 }

@@ -1,4 +1,5 @@
 #include "dinosaur.h"
+#include "console.h"
 
 Dinosaur::Dinosaur()
 {
@@ -17,8 +18,7 @@ Dinosaur::Dinosaur(Point loca, Point direction, int tick_passed) : Obstacle(loca
 
 Dinosaur::~Dinosaur()
 {
-	//location = { };
-	load_icon();
+
 }
 
 std::string Dinosaur::type_name()
@@ -29,4 +29,10 @@ std::string Dinosaur::type_name()
 int Dinosaur::obs_type()
 {
 	return 4;
+}
+
+void Dinosaur::die()
+{
+	Console::MakeSound("Data/Sound/dinosaur_die.wav");
+
 }
