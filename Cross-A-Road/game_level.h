@@ -9,6 +9,7 @@ public:
 	Game_level(int level_id = 1);
 	~Game_level();
 	void init();
+	void init2();
 	void render_box();
 	void update();
 	void render();

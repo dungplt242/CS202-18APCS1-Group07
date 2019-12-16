@@ -56,7 +56,9 @@ namespace Console {
 	void reverse_sound()
 	{
 		sound_active ^= 1;
-		PlaySoundA(NULL, NULL, NULL);
+		if (sound_active) {
+			make_background_sound();
+		} else PlaySoundA(NULL, NULL, NULL);
 	}
 
 	

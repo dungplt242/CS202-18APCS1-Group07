@@ -77,16 +77,21 @@ void Game_map::import_from_file(std::ifstream & fi)
 	int lanes_size;
 	fi >> lanes_size;
 	lanes.resize(lanes_size);
-	for (int i = 0; i < lanes_size; ++i)
+	for (int i = 0; i < lanes_size; ++i) {
+		int type; fi >> type;
+		lanes[i] = Lane::Create(static_cast<LaneType>(type), lanes[i]);
 		lanes[i]->import_from_file(fi);
+	}
 }
 
 void Game_map::export_to_file(std::ofstream & fo)
 {
 	fo << difficulty << std::endl;
 	fo << lanes.size() << std::endl;
-	for (int i = 0; i < (int)lanes.size(); ++i)
+	for (int i = 0; i < (int)lanes.size(); ++i) {
+		fo << lanes[i]->type() << '\n';
 		lanes[i]->export_to_file(fo);
+	}
 }
 
 bool Game_map::check_collide(std::shared_ptr<Player> player)

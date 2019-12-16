@@ -7,10 +7,17 @@
 #include <memory>
 #include <thread>
 
+enum LaneType {
+	LT_Lane, LT_Railway
+};
+
 class Lane : public Window {
 public:
+	Lane(std::shared_ptr<Lane> lane);
 	Lane(Point upper, Point lower, bool is_special = false);
 	virtual ~Lane();
+
+	static std::shared_ptr<Lane> Create(LaneType type, std::shared_ptr<Lane> old_lane);
 	void init();
 	virtual void render();
 	virtual void update();
@@ -19,6 +26,7 @@ public:
 	void import_from_file(std::ifstream& fi);
 	virtual bool check_collide(std::shared_ptr<Player> player);
 	void set_cooldown(int x);
+	virtual int type();
 protected:
 	std::vector<std::shared_ptr<Obstacle>> obstacles;
 	int tick_passed = 0;

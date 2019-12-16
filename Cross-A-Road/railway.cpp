@@ -2,6 +2,10 @@
 
 using Console::gotoXY;
 
+Railway::Railway(std::shared_ptr<Lane> lane): Lane(lane)
+{
+}
+
 Railway::Railway(Point upper, Point lower, bool is_special) : Lane(upper, lower, is_special)
 {
 	
@@ -37,27 +41,32 @@ void Railway::update()
 {
 	if (is_special) return;
 	
-	bool prev_stop = is_stop;
-
+	
 	if (is_rendered)
 		unrender_traffic_light();
 
 	update_traffic_lights();
 	render_traffic_light();
 
-	if (prev_stop != is_stop) {
-		is_rendered = false;
-	}
+	is_rendered = false;
+	
 }
 
 void Railway::update_and_render()
 {
 	if (is_special) return;
+	bool prev_stop = is_stop;
 	update();
-	render();
+	if (prev_stop != is_stop)
+		render();
 }
 
 bool Railway::check_collide(std::shared_ptr<Player> player)
 {
 	return !is_stop && contain(player);
+}
+
+int Railway::type()
+{
+	return LT_Railway;
 }

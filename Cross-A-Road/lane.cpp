@@ -2,7 +2,11 @@
 #include "random.h"
 #include <string>
 #include <Windows.h>
-
+#include "railway.h"
+Lane::Lane(std::shared_ptr<Lane> lane):Lane(lane->upper_left, lane->lower_right, is_special)
+{
+	
+}
 Lane::Lane(Point upper, Point lower, bool is_special) : Window(upper, lower), is_special(is_special)
 {
 	dir_to_right = Random::Int(0, 1);
@@ -14,6 +18,16 @@ Lane::~Lane()
 		draw_entity(obs, true); // erase
 	}
 	if (!is_special) unrender_traffic_light();
+}
+
+std::shared_ptr<Lane> Lane::Create(LaneType type, std::shared_ptr<Lane> old_lane)
+{
+	switch (type) {
+	case LT_Lane: return std::make_shared<Lane>(old_lane);
+	case LT_Railway: return std::make_shared<Railway>(old_lane);
+	default:
+		return std::make_shared<Lane>(old_lane);
+	}
 }
 
 void Lane::init()
@@ -164,6 +178,11 @@ bool Lane::check_collide(std::shared_ptr<Player> player)
 void Lane::set_cooldown(int x)
 {
 	cooldown = x;
+}
+
+int Lane::type()
+{
+	return LT_Lane;
 }
 
 void Lane::update_traffic_lights()

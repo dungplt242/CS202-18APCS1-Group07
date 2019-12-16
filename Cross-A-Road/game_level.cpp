@@ -5,17 +5,9 @@
 
 Game_level::Game_level(int level_id) : level_id(level_id)
 {
-	int n_lanes = std::min(7, 4 + ((level_id - 1) / 2));
-	int lane_width = 6; 
-	player = std::make_shared<Player>();
-	set_pos({ 1, 1 }, { 44, 150 });
-	current_map = std::make_shared<Game_map>(upper_left, lower_right, n_lanes, lane_width, level_id); 
-	level_display = std::make_shared<Window>(
-		Point(upper_left.x, lower_right.y + 4),
-		Point(upper_left.x + 7, lower_right.y + 21)
-	);
-	render_box();
+	
 }
+
 
 Game_level::~Game_level()
 {
@@ -24,7 +16,21 @@ Game_level::~Game_level()
 
 void Game_level::init()
 {
+	init2();
 	current_map->init();
+}
+
+
+void Game_level::init2() {
+	int n_lanes = std::min(7, 4 + ((level_id - 1) / 2));
+	int lane_width = 6;
+	player = std::make_shared<Player>();
+	set_pos({ 1, 1 }, { 44, 150 });
+	current_map = std::make_shared<Game_map>(upper_left, lower_right, n_lanes, lane_width, level_id);
+	level_display = std::make_shared<Window>(
+		Point(upper_left.x, lower_right.y + 4),
+		Point(upper_left.x + 7, lower_right.y + 21)
+		);
 }
 
 void Game_level::update()
@@ -77,6 +83,7 @@ int Game_level::get_level_id()
 void Game_level::import_from_file(std::ifstream &fi)
 {
 	fi >> level_id;
+	init2();
 	level_display->import_from_file(fi);
 	player->import_from_file(fi);
 	current_map->import_from_file(fi);
