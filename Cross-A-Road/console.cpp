@@ -14,7 +14,10 @@ namespace Console {
 	}
 	void full_screen()
 	{
-		SetConsoleDisplayMode(HOUT, CONSOLE_FULLSCREEN_MODE, 0);
+		HWND hWnd = GetConsoleWindow();
+		ShowWindow(hWnd, SW_SHOWMAXIMIZED);
+		//system("mode 1000");
+		//SetConsoleDisplayMode(HOUT, CONSOLE_FULLSCREEN_MODE, NULL);
 	}
 	void SetColor(int ForgC)
 	{
