@@ -1,10 +1,12 @@
 #include "game_level.h"
+#include <algorithm>
 #include <iostream>
 #include <string>
 
 Game_level::Game_level(int level_id) : level_id(level_id)
 {
-	int n_lanes = 7, lane_width = 6; // do we need to change each level?
+	int n_lanes = std::min(7, 4 + ((level_id - 1) / 2));
+	int lane_width = 6; 
 	player = std::make_shared<Player>();
 	set_pos({ 1, 1 }, { 44, 150 });
 	current_map = std::make_shared<Game_map>(upper_left, lower_right, n_lanes, lane_width, level_id); 

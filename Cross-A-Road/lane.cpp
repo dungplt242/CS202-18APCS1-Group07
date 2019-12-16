@@ -169,7 +169,7 @@ void Lane::update_traffic_lights()
 	--traffic_time;
 	if (traffic_time <= 0) {
 		is_stop ^= 1;
-		traffic_time = Random::Int(40, 80) + is_stop * 20;
+		traffic_time = Random::Int(60, 100) + is_stop * 20;
 	}
 }
 

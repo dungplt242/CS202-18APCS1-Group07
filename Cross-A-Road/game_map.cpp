@@ -1,19 +1,32 @@
-#include "game_map.h"
 #include <algorithm>
+#include "game_map.h"
+#include "random.h"
+#include "railway.h"
 
 Game_map::Game_map(Point upper_left, Point lower_right, int n_lanes, int lane_width, int diff) 
 	: difficulty(diff), lanes(n_lanes), Window(upper_left, lower_right)
 {
+	int rail_lane = (n_lanes > 4 ? Random::Int(1, n_lanes - 2) : -1);
 	for (int i = 0; i < n_lanes; ++i) {
-		lanes[i] = std::make_shared<Lane>(
-			Point{ upper_left.x + i * lane_width + 1, upper_left.y + 1 },
-			Point{ upper_left.x + (i + 1) * lane_width, lower_right.y - 1 },
-			i == 0 || i + 1 == n_lanes
-			);
+
+		if (i != rail_lane) {
+			lanes[i] = std::make_shared<Lane>(
+				Point{ upper_left.x + i * lane_width + 1, upper_left.y + 1 },
+				Point{ upper_left.x + (i + 1) * lane_width, lower_right.y - 1 },
+				i == 0 || i + 1 == n_lanes
+				);
+		}
+		else {
+			lanes[i] = std::make_shared<Railway>(
+				Point{ upper_left.x + i * lane_width + 1, upper_left.y + 1 },
+				Point{ upper_left.x + (i + 1) * lane_width, lower_right.y - 1 },
+				i == 0 || i + 1 == n_lanes
+				);
+		}
 
 		if (i != 0 && i + 1 != n_lanes) {
 			// set lane to generate obstacles if not first or last lane
-			lanes[i]->set_cooldown(std::max(20, 50 - diff));
+			lanes[i]->set_cooldown(std::max(25, 50 - diff));
 		}
 		//lanes[i]->draw_rect('#'); 
 	}
