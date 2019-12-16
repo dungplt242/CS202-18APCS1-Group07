@@ -12,6 +12,7 @@ void Game_module::show_main()
 {
 	Random::Init();
 	Console::full_screen();
+
 	Menu menu;
 	while (true) {
 		Console::clear_screen();

@@ -169,6 +169,7 @@
     <ClCompile Include="point.cpp" />
     <ClCompile Include="pixel.cpp" />
     <ClCompile Include="random.cpp" />
+    <ClCompile Include="railway.cpp" />
     <ClCompile Include="truck.cpp" />
     <ClCompile Include="window.cpp" />
   </ItemGroup>
@@ -189,6 +190,7 @@
     <ClInclude Include="pixel.h" />
     <ClInclude Include="player.h" />
     <ClInclude Include="point.h" />
+    <ClInclude Include="railway.h" />
     <ClInclude Include="random.h" />
     <ClInclude Include="truck.h" />
     <ClInclude Include="window.h" />
