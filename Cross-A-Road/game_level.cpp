@@ -14,6 +14,8 @@ Game_level::Game_level(int level_id) : level_id(level_id)
 		Point(upper_left.x, lower_right.y + 4),
 		Point(upper_left.x + 7, lower_right.y + 21)
 	);
+
+	Console::MakeBackgroundSound(0);
 	render_box();
 }
 

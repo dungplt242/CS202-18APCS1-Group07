@@ -36,5 +36,6 @@ namespace Console
 	void clear_screen();
 	void full_screen();
 	void SetColor(int ForgC);
+	void MakeBackgroundSound(bool is_menu = true);
 	void MakeSound(const char* filename);
 }
