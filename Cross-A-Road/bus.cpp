@@ -1,4 +1,5 @@
 #include "bus.h"
+#include "console.h"
 
 Bus::Bus()
 {
@@ -29,4 +30,9 @@ std::string Bus::type_name()
 int Bus::obs_type()
 {
 	return 1;
+}
+
+void Bus::die()
+{
+	Console::MakeSound("Data/Sound/car_die.wav");
 }

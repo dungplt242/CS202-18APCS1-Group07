@@ -1,4 +1,5 @@
 #include "car.h"
+#include "console.h"
 
 Car::Car()
 {
@@ -18,6 +19,11 @@ Car::Car(Point loca, Point direction, int tick_passed) : Obstacle(loca, directio
 int Car::obs_type()
 {
 	return 0;
+}
+
+void Car::die()
+{
+	Console::MakeSound("Data/Sound/car_die.wav");
 }
 
 Car::~Car()

@@ -1,4 +1,5 @@
 #include "dinosaur.h"
+#include "console.h"
 
 Dinosaur::Dinosaur()
 {
@@ -29,4 +30,10 @@ std::string Dinosaur::type_name()
 int Dinosaur::obs_type()
 {
 	return 4;
+}
+
+void Dinosaur::die()
+{
+	Console::MakeSound("Data/Sound/dinosaur_die.wav");
+
 }

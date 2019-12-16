@@ -81,7 +81,7 @@ bool Game_map::check_collide(std::shared_ptr<Player> player)
 {
 	for (int i = 0; i < lanes.size(); i++)
 		if (lanes[i]->contain(player)) {
-			if (lanes[i]->check_collide(player))
+			if (lanes[i]->check_collide(player)) 
 				return true;
 			return false;
 		}
