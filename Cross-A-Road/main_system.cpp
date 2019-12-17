@@ -94,6 +94,8 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 	bool is_running = true, is_pause = false;
 	current_state->render();
 
+	bool need_render_again = false;
+
 	auto main_game_loop = [&](char &ch) //char input 
 	{
 		while (true) {
@@ -101,6 +103,12 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 				std::lock_guard<std::mutex> locker(mtx);
 				if (!is_running) return;
 				if (is_pause) continue;
+			}
+			if (need_render_again) {
+				current_state->render_box();
+				current_state->update();
+				current_state->render();
+				need_render_again = false;
 			}
 			current_state->update_and_render();
 			current_state->process_input(ch);
@@ -142,9 +150,7 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 					return_to_menu();
 					return;
 				}
-				current_state->render_box();
-				current_state->update();
-				current_state->render();
+				need_render_again = true;
 				is_pause ^= 1;
 			}
 			break;

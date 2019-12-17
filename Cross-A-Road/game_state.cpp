@@ -1,5 +1,5 @@
 #include "game_state.h"
-
+#include <Windows.h>
 Game_state::Game_state()
 {
 	set_pos({ 1, 1 }, { 44, 150 });
@@ -25,6 +25,7 @@ void Game_state::play_again()
 	current_level = std::make_shared<Game_level>(current_level->get_level_id());
 	current_level->init();
 	current_level->render();
+	//Sleep(2000);
 	// Message 
 }
 

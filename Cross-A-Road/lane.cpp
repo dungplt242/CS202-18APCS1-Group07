@@ -169,7 +169,6 @@ bool Lane::check_collide(std::shared_ptr<Player> player)
 		if (obstacles[i]->collide(player)) {
 			// Make sound of obstacles
 			obstacles[i]->die();
-			Sleep(2000);
 			return true;
 		}
 	return false;

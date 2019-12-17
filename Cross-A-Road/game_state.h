@@ -19,4 +19,5 @@ public:
 	void play_again();
 private:
 	std::shared_ptr<Game_level> current_level = nullptr;
+	bool is_dead = false;
 };

@@ -59,6 +59,7 @@ void Railway::update_and_render()
 	update();
 	if (prev_stop != is_stop)
 		render();
+	else is_rendered = true;
 }
 
 bool Railway::check_collide(std::shared_ptr<Player> player)

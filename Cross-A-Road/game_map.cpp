@@ -29,7 +29,6 @@ Game_map::Game_map(Point upper_left, Point lower_right, int n_lanes, int lane_wi
 		}
 		//lanes[i]->draw_rect('#'); 
 	}
-	render_box();
 }
 
 bool Game_map::is_finished(std::shared_ptr<Player> player)

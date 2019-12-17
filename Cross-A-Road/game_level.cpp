@@ -31,6 +31,7 @@ void Game_level::init2() {
 		Point(upper_left.x, lower_right.y + 4),
 		Point(upper_left.x + 7, lower_right.y + 21)
 		);
+	render_box();
 }
 
 void Game_level::update()
