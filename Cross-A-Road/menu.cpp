@@ -9,7 +9,7 @@ Menu::Menu(bool is_main_menu)
 		content = {
 			"NEW GAME",
 			"LOAD GAME",
-			"SETTINGS",
+			"TURN ON/OFF SOUND",
 			"QUIT"
 		};
 	}
@@ -20,7 +20,7 @@ Menu::Menu(bool is_main_menu)
 			"NEW GAME",
 			"SAVE_GAME",
 			"LOAD GAME",
-			"SETTINGS",
+			"TURN ON/OFF SOUND",
 			"QUIT GAME"
 		};
 	}
