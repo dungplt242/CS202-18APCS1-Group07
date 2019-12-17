@@ -64,7 +64,10 @@ void Railway::update_and_render()
 
 bool Railway::check_collide(std::shared_ptr<Player> player)
 {
-	return !is_stop && contain(player);
+	if (!is_stop && contain(player)) {
+		player->die();
+		return true;
+	}
 }
 
 int Railway::type()

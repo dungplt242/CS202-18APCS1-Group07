@@ -60,6 +60,20 @@ namespace Console {
 			make_background_sound();
 		} else PlaySoundA(NULL, NULL, NULL);
 	}
+	bool status_console = true;
+	bool status()
+	{
+		return status_console;
+	}
+	void enable_console()
+	{
+		status_console = true;
+	}
+
+	void disabled_console()
+	{
+		status_console = false;
+	}
 
 	
 	/*

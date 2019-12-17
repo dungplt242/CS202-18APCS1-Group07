@@ -39,4 +39,7 @@ namespace Console
 	void make_background_sound(bool is_menu = true);
 	void make_sound(const char* filename);
 	void reverse_sound();
+	bool status();
+	void enable_console();
+	void disabled_console();
 }

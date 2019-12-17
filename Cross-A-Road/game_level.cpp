@@ -22,6 +22,7 @@ void Game_level::init()
 
 
 void Game_level::init2() {
+	Console::enable_console();
 	int n_lanes = std::min(7, 4 + ((level_id - 1) / 2));
 	int lane_width = 6;
 	player = std::make_shared<Player>();

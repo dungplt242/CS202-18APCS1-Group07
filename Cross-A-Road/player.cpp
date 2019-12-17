@@ -39,6 +39,7 @@ void Player::move(Point d)
 
 void Player::die()
 {
+	Console::disabled_console();
 	Console::make_sound("Data/Sound/player_die.wav");
 	Sleep(3000);
 }

@@ -141,6 +141,9 @@ void Game_module::start_game(std::shared_ptr<Game_state> start_state)
 			// Pause menu
 		case ESC: 
 			// Pause menu
+			if (!Console::status()) {
+				break;
+			}
 			is_pause ^= 1;
 			if (is_pause) {
 				Sleep(500);
