@@ -65,6 +65,7 @@ int Game_module::show_pause_menu()
 		Console::reverse_sound();
 		break;
 	case PAUSE_MENU_NAME::QUIT2:
+		current_state = nullptr;
 		return -1;
 	}
 	return 0;
@@ -167,7 +168,6 @@ void Game_module::load_game()
 	// Get file name
 	std::string filename = "First";
 	filename = "SaveGame/" + filename + ".map";
-
 	auto new_state = std::make_shared<Game_state>();
 	new_state ->import_from_file(filename);
 	if (current_state == nullptr) start_game(new_state);
