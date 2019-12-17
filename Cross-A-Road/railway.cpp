@@ -1,4 +1,5 @@
 #include "railway.h"
+#include <Windows.h>
 
 using Console::gotoXY;
 
@@ -65,9 +66,13 @@ void Railway::update_and_render()
 bool Railway::check_collide(std::shared_ptr<Player> player)
 {
 	if (!is_stop && contain(player)) {
+		Console::disabled_console();
+		Console::make_sound("Data/Sound/Railway.wav");
+		Sleep(2000);
 		player->die();
 		return true;
 	}
+	return false;
 }
 
 int Railway::type()

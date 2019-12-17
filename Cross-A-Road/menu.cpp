@@ -4,7 +4,6 @@
 
 Menu::Menu(bool is_main_menu)
 {	
-	Console::make_background_sound();
 	if (is_main_menu) {
 		logo_filepath = "Data/logo.txt";
 		content = {
@@ -52,6 +51,8 @@ void Menu::load_menu()
 
 int Menu::get_input()
 {
+
+	Console::make_background_sound();
 	while (true) {
 		Choose(cursor);
 		while (!_kbhit());
