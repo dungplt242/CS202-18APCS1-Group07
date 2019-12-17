@@ -131,7 +131,16 @@ void Lane::generate_obstacles()
 	obstacles.push_back(obs);
 }
 
-
+void Lane::load_finish_lane(bool isErase)
+{
+	std::ifstream fin("Data/finish_lane.txt");
+	std::string st;
+	int line = upper_left.x - 1;
+	while (getline(fin, st)) {
+		if (isErase) st.assign(st.size(), ' ');
+		print_center_align(st, ++line);
+	}
+}
 void Lane::export_to_file(std::ofstream & fo)
 {
 	//fo << is_rendered << std::endl;

@@ -31,6 +31,11 @@ Game_map::Game_map(Point upper_left, Point lower_right, int n_lanes, int lane_wi
 	}
 }
 
+Game_map::~Game_map()
+{
+	lanes.back()->load_finish_lane(1);
+}
+
 bool Game_map::is_finished(std::shared_ptr<Player> player)
 {
 	return lanes.back()->contain(player);
@@ -68,6 +73,7 @@ void Game_map::render_box()
 		else if (i == (int)lanes.size() - 2) lanes[i]->draw_road_marking(false, true);
 		else if (i > 1 && i <(int)lanes.size() - 2) lanes[i]->draw_road_marking(false, false);
 	}
+	lanes.back()->load_finish_lane();
 }
 
 void Game_map::import_from_file(std::ifstream & fi)

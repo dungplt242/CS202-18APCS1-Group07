@@ -8,6 +8,7 @@
 class Game_map : public Window {
 public:
 	Game_map(Point upper_left, Point lower_right, int n_lanes, int lane_width, int diff);
+	virtual ~Game_map();
 	bool is_finished(std::shared_ptr<Player> player);
 	void init();
 	void render_box();

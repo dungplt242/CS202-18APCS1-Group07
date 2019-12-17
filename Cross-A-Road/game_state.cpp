@@ -13,6 +13,7 @@ void Game_state::init()
 
 void Game_state::level_up()
 {
+	Console::disabled_console();
 	Console::make_sound("Data/Sound/levelup.wav");
 	Sleep(1500);
 	current_level = std::make_shared<Game_level>(current_level->get_level_id() + 1);

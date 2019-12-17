@@ -25,6 +25,7 @@ public:
 	void export_to_file(std::ofstream& fo);
 	void import_from_file(std::ifstream& fi);
 	virtual bool check_collide(std::shared_ptr<Player> player);
+	void load_finish_lane(bool isErase = false);
 	void set_cooldown(int x);
 	virtual int type();
 protected:
